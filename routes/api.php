@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\laundryController;
+use App\Http\Controllers\api\userTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('laundry', laundryController::class);
 
+Route::apiResource('userType', userTypeController::class);

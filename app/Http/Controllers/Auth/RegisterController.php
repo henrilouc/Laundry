@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserType;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'cpf' => ['required']
         ]);
     }
 
@@ -65,12 +67,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'user_type_id' => UserType::GUEST,
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'phone' => $data['phone'],
-            'status' => 1,
-            'birth'  => $data['birth']
+            'status' => 0,
+            'birth'  => $data['birth'],
+            'cpf'   =>  $data['cpf']
         ]);
     }
 }

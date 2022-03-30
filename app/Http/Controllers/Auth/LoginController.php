@@ -35,6 +35,14 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+       // $this->middleware('verifyProfile')->except('logout');
+    }
+
+    public function indexAdmin(){
+        return  redirect()->route('user.search');
+    }
+
+    public function indexGuest(){
+        return view('waiting');
     }
 }
