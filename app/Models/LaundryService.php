@@ -16,7 +16,8 @@ class LaundryService extends Model
         'credit',
         'paymentReceipt',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'status'
     ];
 
 

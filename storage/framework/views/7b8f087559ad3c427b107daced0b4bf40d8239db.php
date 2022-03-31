@@ -13,61 +13,65 @@
                     <div class="tab-pane fade show" id="nav-shopping" role="tabpanel">
                         <form method="post" action="" enctype="multipart/form-data">
                             <div class="row">
-                                <div class="col-sm-6 col-md-4">
-                                    <div class="card text-center border-secondary">
-                                        <div class="card-header "></div>
-                                        <div class="card-body">
-                                            <div class="caption text-center">
-                                                <label class="btn btn-outline-secondary" for="files">Imagen</label>
-                                                <input type="file" accept="image/*" id="files" name="file">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-xs-6 col-md-8" style="padding-right: 0px">
                                     <div class="card border-secondary ">
                                         <div class="card-header text-white bg-secondary">
-                                            <h3>Registrar Compra Avulsa </h3>
+                                            <h4>Registrar Compra Avulsa </h4>
                                         </div>
                                         <div class="card-body cardStyle">
                                             <div class="form-group">
-                                                <input type="text" name="Description" placeholder="Descripción" class="form-control" autofocus autocomplete="off" value=" " />
-                                                <span id="Descripción" class="text-danger"> </span>
+                                                <input type="text" name="name" placeholder="Nome" class="form-control" autofocus autocomplete="off" value="" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="number" name="Quantity" placeholder="Cantidad" class="form-control" min="1" autocomplete="off" onkeyup="shopping.purchaseAmount()" id="Quantity" value=" " />
-                                                <span id="Quantitys" class="text-danger"> </span>
+                                                <input type="text" name="CPF" placeholder="CPF" class="form-control" id="CPF" value="" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="Price" placeholder="Precio de compra" class="form-control" autocomplete="off" onkeypress="return filterFloat(event,this)" id="Price" value=" " />
-                                                <span id="Prices" class="text-danger"> </span>
+                                                <input type="text" name="phone" placeholder="Telefone" class="form-control" autocomplete="off"  id="phone" value="" />
                                             </div>
                                             <div class="form-group">
-                                            <span class="text-danger labelCompra_Importe">
-                                                <label class="text-success labelCompra_Importe" id="labelCompra_Importe"> </label>
-                                            </span>
+                                                <label>Quilo de Roupa</label>
+                                                <span class="text-danger">
+                                                    <label class="text-success "></label>
+                                                </span>
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" name="Provider" placeholder="Proveedor" class="form-control" autocomplete="off" onkeyup="shopping.GetProvider()" id="Provider" value=" " />
-                                                <span id="Proveedor" class="text-danger"> </span>
+                                                <input type="number" name="kilo" placeholder="00.00 KG" id="Quantity" class="form-control" oninput="convertAmount()" autocomplete="off" required />
                                             </div>
                                             <div class="form-group">
-                                                <select id="listProvider" class='form-control' onclick="shopping.SetProvider()" name="listProvider">
-
-                                                </select>
+                                                <label>Descrição</label>
+                                                <span class="text-danger">
+                                                    <label class="text-success "></label>
+                                                </span>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="description" placeholder="Descrição"  class="form-control" required />
+                                            </div>
+                                            <div class="form-group">
+                                                <label id="labelCompra_Debt">Valor a Pagar</label>
+                                                <br />
+                                                <span class="text-success">
+                                                    <label class="text-success" id="Price" >0.00</label> R$
+                                                 </span>
+                                            </div>
+                                            <div class="caption text-center">
+                                                <label class="btn btn-outline-secondary" for="files">Comprovante</label>
+                                                <input class="custom-file-label" type="file" accept="image/*" id="files" name="file" style="display:none" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <span class="text-danger labelCompra_Importe">
+                                                    <label class="text-success labelCompra_Importe" id="labelCompra_Importe"> </label>
+                                                </span>
                                             </div>
                                             <div class="row">
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-outline-primary">Register</button>
+                                                    <button type="submit" class="btn btn-outline-primary">Comprar</button>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <a href=" class="btn btn-outline-warning">Cancel</a>
-                                                    </div>
+                                                    <a class="btn btn-outline-warning">Voltar</a>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <input type="hidden" name="IdTemporary" value=">" />
+                                                <input name="credit"  type="hidden" id="Credit" value="" />
                                                 <label class="text-danger"> </label>
                                             </div>
                                         </div>
@@ -109,8 +113,8 @@
                                                 <label id="labelCompra_Debt">Valor a Pagar</label>
                                                 <br />
                                                 <span class="text-success">
-                                                <label class="text-success" id="Price" >0.00</label> R$
-                                            </span>
+                                                    <label class="text-success" id="Price" >0.00</label> R$
+                                                </span>
                                             </div>
                                             <div class="form-group">
                                                 <div class="row">

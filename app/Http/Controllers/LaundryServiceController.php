@@ -43,7 +43,8 @@ class LaundryServiceController extends Controller
             'description'=> $request->description,
             'kilo'=> $request->kilo,
             'credit'=> $request->credit,
-            'paymentReceipt'=> $request->file
+            'paymentReceipt'=> $request->file,
+            'status' => 'P'
         ]);
 
         return redirect()->route('laundryService');
