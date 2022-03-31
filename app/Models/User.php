@@ -15,12 +15,18 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
+        'user_type_id',
         'name',
         'email',
         'password',
+        'birth',
+        'phone',
+        'status',
+        'inactivated_at',
+        'cpf'
     ];
 
     /**
@@ -41,4 +47,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function profile()
+    {
+        return $this->hasOne(UserType::class, 'id', 'user_type_id');
+    }
 }

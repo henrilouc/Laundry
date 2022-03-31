@@ -17,7 +17,7 @@ class CreateUserTypesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->date('inactivated_at');
+            $table->date('inactivated_at')->nullable()->default(Null);
             $table->timestamps();
         });
     }
