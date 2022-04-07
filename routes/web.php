@@ -16,18 +16,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
+Route::get('/', function () {
+    return view('auth.login');
+});
+
 Route::middleware('verifyProfile')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-    Auth::routes();
+
 
 Route::get('/comprar/{laundryServices?}',  [LaundryServiceController::class, 'index'])->name('laundryService');
 Route::get('/buscar/',  [LaundryServiceController::class, 'show'])->name('laundryService.show');
 Route::post('/comprar',  [LaundryServiceController::class, 'store'])->name('laundryService.form');
+
+Route::get('/waiting', [LoginController::class, 'indexGuest'])->name('waiting');
+
 
 Route::get('/admin/solicitacoes', [UserController::class, 'search'])->name('user.search');
 
@@ -40,7 +46,6 @@ Route::get('/admin/extrato', [LaundryServiceController::class, 'indexExtract'])-
 
 Route::get('/admin/extratos', [LaundryServiceController::class, 'extract'])->name('extract.search');
 
-Route::get('/waiting', [LoginController::class, 'indexGuest'])->name('waiting');
 
 Route::get('/admin' , [LoginController::class, 'indexAdmin'])->name('admin');
 
