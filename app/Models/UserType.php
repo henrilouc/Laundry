@@ -16,4 +16,5 @@ class UserType extends Model
 
     const ADMIN     = 1;
     const GUEST     = 2;
+    const USER      = 3;
 }

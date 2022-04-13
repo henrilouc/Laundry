@@ -18,7 +18,6 @@ class VerifyProfile
     public function handle(Request $request, Closure $next)
     {
         if(auth()->check()){
-//            auth()->logout();
             if(auth()->user()->pluck('user_type_id')->contains(UserType::ADMIN)) {
                 return response()->redirectToRoute('admin');
             }
