@@ -14,10 +14,10 @@ class AdminAccess
             if(auth()->user()->pluck('user_type_id')->contains(UserType::ADMIN)) {
                 return $next($request);
             }
-            dd('NOT ADMIN');
+            return redirect('/');
         }else {
             auth()->logout();
-            return response()->view('/');
+            return response()->view('auth.login');
         }
     }
 }
