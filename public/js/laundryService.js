@@ -10,3 +10,7 @@ function convertAmount(){
 function numberDecimal(Quantity) {
     return Quantity.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+function buttonRequired(){
+
+}
