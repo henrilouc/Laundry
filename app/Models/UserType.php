@@ -11,7 +11,9 @@ class UserType extends Model
     protected $fillable =[
         'name',
         'description',
-        'inactivated_at'
+        'inactivated_at',
+        'created_at',
+        'updated_at'
     ];
 
     const ADMIN     = 1;

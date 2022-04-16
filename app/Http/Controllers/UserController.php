@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserType;
+use App\Notifications\UserApproved;
+use App\Notifications\UserRejected;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -57,16 +61,19 @@ class UserController extends Controller
 
         $users = User::when(request('name'), function ($query, $name){
 
-            return $query->where('name', 'like', "%{$name}%")->where('inativated_at', null);
+            return $query->where('name', 'like', "%{$name}%");
 
         },
 
         function ($query) {
-            return $query->where('status', 0);
+            return $query->where('status', 0)->where('inactivated_at', null);
         })->get();
 
 
-        return view('admin',compact('users'));
+        $userTypes = UserType::get();
+
+
+        return view('admin',compact('users', 'userTypes'));
     }
 
 
@@ -82,17 +89,34 @@ class UserController extends Controller
     }
 
 
-    public function approveRequest(Request $request, $id)
+    public function approveRequest(Request $request)
     {
-        User::where('id', $id)->update(['status' => '1']);
+        $user = User::where('id', $request->id)->first();
+        try {
+           $user->update([
+                'status' => 3,
+                'user_type_id' => $request->tipo
+            ]);
+        }catch (\Exception $e){
+            die($e);
+        }
+        Notification::route('mail', config('mail.from.address'))
+            ->notify(new UserApproved($user));
         //toastr()->success('', 'Solicitação Aprovada Com Sucesso.');
         return Redirect::back();
     }
 
-    public function rejectRequest(Request $request, $id)
+    public function rejectRequest($id)
     {
-        User::where('id', $id)->update(['inactivated_at' => Carbon::now()]);
+        try{
+            $user = User::where('id', $id)->first();
+            $user->update(['inactivated_at' => Carbon::now()]);
+            Notification::route('mail', config('mail.from.address'))
+                ->notify(new UserRejected($user));
         //toastr()->success('', 'Solicitação Rejeitada Com Sucesso.');
+        }catch (\Exception $e){
+            die($e);
+        }
         return Redirect::back();
     }
 

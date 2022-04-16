@@ -14,7 +14,6 @@ class LaundryServiceController extends Controller
     public function index()
     {
         Return  redirect()->route('laundryService.show');
-
     }
 
     public function indexExtract()
@@ -50,6 +49,17 @@ class LaundryServiceController extends Controller
         return redirect()->route('laundryService');
     }
 
+    public function storePayment(Request $request){
+
+        LaundryService::create([
+            'user_id'=> $request->user_id,
+            'description'=> $request->description,
+            'kilo'=> $request->kilo,
+            'credit'=> $request->credit,
+            'paymentReceipt'=> $request->file,
+            'status' => 'P'
+        ]);
+    }
     public function sell(Request $request){
         Credit::where('COD_PESSOA', $request->COD_PESSOA)->update([
             'DS_EMAIL' => $request->DS_EMAIL

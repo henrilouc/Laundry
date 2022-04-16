@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->date('birth')->nullable();
             $table->string('password');
             $table->string('phone');
-            $table->boolean('status');
+            $table->integer('status');
             $table->rememberToken();
             $table->timestamps();
             $table->date('inactivated_at')->nullable()->default(Null);

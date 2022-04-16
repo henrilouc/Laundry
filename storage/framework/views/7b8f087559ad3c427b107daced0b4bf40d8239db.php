@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
     <div class="container">
         <h2>Comprar Crédito</h2>
@@ -13,7 +11,7 @@
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show" id="nav-shopping" role="tabpanel">
-                        <form method="post" action="" enctype="multipart/form-data">
+                        <form  action="salve"  enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-xs-6 col-md-8" style="padding-right: 0px">
                                     <div class="card border-secondary ">
@@ -54,6 +52,15 @@
                                                 <span class="text-success">
                                                     <label class="text-success" id="Price" >0.00</label> R$
                                                  </span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label id="labelCompra_Debt">Forma de Pagamento</label>
+                                                <select name="paymentMethod" class="text-success">
+                                                    <option value="1">Saldo</option>
+                                                    <option value="2">Cartão de Débito</option>
+                                                    <option value="3">Cartão de Crédito</option>
+                                                    <option value="4">Dinheiro</option>
+                                                 </select>
                                             </div>
                                             <div class="caption text-center">
                                                 <label class="btn btn-outline-secondary" for="files">Comprovante</label>

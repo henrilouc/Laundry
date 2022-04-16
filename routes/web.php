@@ -49,6 +49,8 @@ Route::middleware('admin')->group(function () {
 
         Route::get('/pagamento', [LaundryServiceController::class, 'indexManage'])->name('manage');
 
+        Route::post('/pagamento-avulso', [LaundryServiceController::class, 'storePayment'])->name('manage.form');
+
         Route::get('/pagamentos', [LaundryServiceController::class, 'showPayments'])->name('manage.search');
 
 
@@ -60,7 +62,7 @@ Route::middleware('admin')->group(function () {
         Route::get('/' , [LoginController::class, 'indexAdmin'])->name('admin');
     });
 
-    Route::get('/aprovar/{id}' , [UserController::class, 'approveRequest'])->name('admin.approve');
+    Route::post('/aprovar' , [UserController::class, 'approveRequest'])->name('admin.approves');
     Route::get('/aprovar-pagamento/{id}' , [LaundryServiceController::class, 'approvePayin'])->name('admin.payinApprove');
 
     Route::get('/rejeitar/{id}' , [UserController::class, 'rejectRequest'])->name('admin.reject');
