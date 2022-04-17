@@ -102,7 +102,7 @@ class UserController extends Controller
         }
         Notification::route('mail', config('mail.from.address'))
             ->notify(new UserApproved($user));
-        //toastr()->success('', 'Solicitação Aprovada Com Sucesso.');
+        toastr()->success('', 'Usuario Aprovado Com Sucesso.');
         return Redirect::back();
     }
 
@@ -113,7 +113,7 @@ class UserController extends Controller
             $user->update(['inactivated_at' => Carbon::now()]);
             Notification::route('mail', config('mail.from.address'))
                 ->notify(new UserRejected($user));
-        //toastr()->success('', 'Solicitação Rejeitada Com Sucesso.');
+        toastr()->success('', 'Usuário Rejeitado Com Sucesso.');
         }catch (\Exception $e){
             die($e);
         }

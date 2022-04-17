@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('content'); ?>
     <div>
         <div class="mx-auto pull-right">
