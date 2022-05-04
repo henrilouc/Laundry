@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Credit;
+use App\Models\Price;
 use App\Models\Sale;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\UserType;
 use App\Notifications\NewUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
@@ -141,7 +143,9 @@ class LaundryServiceController extends Controller
     public function showPaymentManage(){
         $users = User::orderBy('name', 'ASC')->where('status','=',3)->get();
 
-        return view('manageCredit',compact('users'));
+        $multiplier = Price::where('user_type_id', Auth::user()->user_type_id);
+
+        return view('manageCredit',compact('users',$multiplier));
     }
 
     public function showPayments(Request $request)

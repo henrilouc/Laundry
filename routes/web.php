@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LaundryServiceController;
+use App\Http\Controllers\PriceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,12 @@ Route::middleware('admin')->group(function () {
         Route::get('/extrato', [LaundryServiceController::class, 'indexExtract'])->name('extract');
 
         Route::get('/extratos', [LaundryServiceController::class, 'extract'])->name('extract.search');
+
+        Route::get('/gerir-preco', [PriceController::class, 'index'])->name('managePrice');
+
+        Route::get('/gerir-precos', [PriceController::class, 'show'])->name('managePrice.show');
+
+        Route::post('/add-preco', [PriceController::class, 'store'])->name('managePrice.form');
 
         Route::get('/' , [LoginController::class, 'indexAdmin'])->name('admin');
     });

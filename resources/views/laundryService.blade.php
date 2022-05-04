@@ -46,7 +46,7 @@
                                             </span>
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" name="amount" placeholder="00.00 KG" id="Quantity" class="form-control" oninput="convertAmount()" autocomplete="off" required />
+                                            <input type="number" name="amount" placeholder="00.00 KG" id="Quantity" class="form-control" oninput="convertAmount({{$multiplier}})" autocomplete="off" required />
 
                                         </div>
                                         <div class="form-group">

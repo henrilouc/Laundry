@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('content'); ?>
     <div>
         <div class="mx-auto pull-right">
@@ -37,7 +39,7 @@
                                                                     <option value="<?php echo e($userType->id); ?>"><?php echo e($userType->name); ?></option>
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
-                                                            <input name="id" type="hidden" value="<?php echo e($user->id); ?>"> &nbsp; &nbsp; &nbsp;
+                                                            <input name="id" type="hidden" value="<?php echo e($user->id); ?>">&nbsp; &nbsp; &nbsp;
                                                             <button type="submit" class="btn btn-success">Aprovar</button> &nbsp; &nbsp; &nbsp;
                                                             <a class="btn btn-danger" href="<?php echo e(route('admin.reject', $user->id)); ?>">Rejeitar</a> &nbsp; &nbsp; &nbsp;
                                                         </form>
