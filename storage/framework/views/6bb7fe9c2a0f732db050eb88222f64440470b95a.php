@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
     <div>
         <div class="mx-auto pull-right">
@@ -33,7 +31,7 @@
                                                         <td>
                                                         <form action="<?php echo e(route('admin.approves')); ?>" method="POST">
                                                             <?php echo csrf_field(); ?>
-                                                            <select name="tipo" required>
+                                                            <select name="tipo" required> &nbsp; &nbsp; &nbsp;
                                                                 <option disabled selected>::Selecione::</option>
                                                                 <?php $__currentLoopData = $userTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $userType): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                     <option value="<?php echo e($userType->id); ?>"><?php echo e($userType->name); ?></option>

@@ -8,9 +8,9 @@
                 <div class="card border-secondary ">
                     <div class="card-body cardStyle">
 
-                        @if(isset($laundryServices))
+                        @if(isset($transactions))
                             <table id="dataTable" class="table table-hover">
-                                @if(count(array($laundryServices)) > 0)
+                                @if(count(array($transactions)) > 0)
                                     <thead>
                                     <tr>
                                         <th>Nome</th>
@@ -21,13 +21,13 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($laundryServices as $laundryService)
+                                    @foreach($transactions as $transaction)
                                         <tr>
-                                            <td>{{ $laundryService->laundryUser->name}}</td>
-                                            <td>{{ $laundryService->kilo }}</td>
-                                            <td>{{ $laundryService->credit  }}</td>
-                                            <td>{{ $laundryService->description  }}</td>
-                                            <td>{{date('d/m/Y H:i ',strtotime($laundryService->updated_at))}} </td>
+                                            <td>{{ $transaction->laundryUser->name}}</td>
+                                            <td>{{ $transaction->kilo }}</td>
+                                            <td>{{ $transaction->credit  }}</td>
+                                            <td>{{ $transaction->description  }}</td>
+                                            <td>{{date('d/m/Y H:i ',strtotime($transaction->updated_at))}} </td>
                                         </tr>
                                     @endforeach
                                     @else

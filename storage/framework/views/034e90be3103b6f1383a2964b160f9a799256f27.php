@@ -6,9 +6,9 @@
                 <div class="card border-secondary ">
                     <div class="card-body cardStyle">
 
-                        <?php if(isset($laundryServices)): ?>
+                        <?php if(isset($transactions)): ?>
                             <table id="dataTable" class="table table-hover">
-                                <?php if(count(array($laundryServices)) > 0): ?>
+                                <?php if(count(array($transactions)) > 0): ?>
                                     <thead>
                                     <tr>
                                         <th>Nome</th>
@@ -19,13 +19,13 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php $__currentLoopData = $laundryServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $laundryService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php $__currentLoopData = $transactions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $transaction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td><?php echo e($laundryService->laundryUser->name); ?></td>
-                                            <td><?php echo e($laundryService->kilo); ?></td>
-                                            <td><?php echo e($laundryService->credit); ?></td>
-                                            <td><?php echo e($laundryService->description); ?></td>
-                                            <td><?php echo e(date('d/m/Y H:i ',strtotime($laundryService->updated_at))); ?> </td>
+                                            <td><?php echo e($transaction->laundryUser->name); ?></td>
+                                            <td><?php echo e($transaction->kilo); ?></td>
+                                            <td><?php echo e($transaction->credit); ?></td>
+                                            <td><?php echo e($transaction->description); ?></td>
+                                            <td><?php echo e(date('d/m/Y H:i ',strtotime($transaction->updated_at))); ?> </td>
                                         </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     <?php else: ?>
