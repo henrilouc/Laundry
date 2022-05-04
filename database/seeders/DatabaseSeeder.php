@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
 
             UserSeeder::class,
             ExtractSeeder::class,
-            TypeUserSeeder::class
+            TypeUserSeeder::class,
+            CreditSeeder::class,
+            TransactionSeeder::class
 
         ]);
     }

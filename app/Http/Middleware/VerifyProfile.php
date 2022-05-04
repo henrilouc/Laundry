@@ -18,11 +18,14 @@ class VerifyProfile
     public function handle(Request $request, Closure $next)
     {
         if(auth()->check()){
-            if(auth()->user()->pluck('user_type_id')->contains(UserType::ADMIN)) {
+            if(auth()->user()->user_type_id == UserType::ADMIN) {
                 return response()->redirectToRoute('admin');
             }
-            if(auth()->user()->pluck('user_type_id')->contains(UserType::GUEST)) {
+            if(auth()->user()->user_type_id == UserType::GUEST) {
                 return response()->redirectToRoute('waiting');
+            }
+            if(auth()->user()->user_type_id == UserType::USER) {
+                return response()->redirectToRoute('laundryService.show');
             }
             return $next($request);
         }else {

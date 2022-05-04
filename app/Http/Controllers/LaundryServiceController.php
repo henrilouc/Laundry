@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Credit;
-use App\Models\LaundryService;
-use Carbon\Carbon;
+use App\Models\Sale;
+use App\Models\Transaction;
+use App\Models\User;
+use App\Models\UserType;
+use App\Notifications\NewUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
 
 class LaundryServiceController extends Controller
 {
-
     public function index()
     {
         Return  redirect()->route('laundryService.show');
@@ -37,133 +41,124 @@ class LaundryServiceController extends Controller
 
     public function store(Request $request)
     {
-        LaundryService::create([
-            'user_id'=> $request->user_id,
+
+        Transaction::create([
+            'user_id'=> auth()->id(),
+            'value'=> $request->credit,
+            'amount'=> $request->amount,
             'description'=> $request->description,
-            'kilo'=> $request->kilo,
-            'credit'=> $request->credit,
-            'paymentReceipt'=> $request->file,
-            'status' => 'P'
+            'type' => 0,
+            'status' => 'P',
+            'paymentReceipt'=> $request->file
         ]);
+
 
         return redirect()->route('laundryService');
     }
 
-    public function storePayment(Request $request){
 
-        LaundryService::create([
-            'user_id'=> $request->user_id,
-            'description'=> $request->description,
-            'kilo'=> $request->kilo,
-            'credit'=> $request->credit,
-            'paymentReceipt'=> $request->file,
-            'status' => 'P'
+    public function adminStore(Request $request)
+    {
+        if(isset($request->chkBuy)) {
+            $user = User::create([
+                'user_type_id' => 3,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make('06079669'),
+                'phone' => $request->phone,
+                'status' => UserType::USER,
+                'birth'  => $request->birth,
+                'cpf'   =>  $request->cpf
+            ]);
+            $user_id = $user->id;
+            Notification::route('mail', config('mail.from.address'))
+                ->notify(new NewUser($user));
+
+            toastr()->info('Os dados de login foram enviados por email',"Novo Usuário");
+        }else{
+            $user_id = $request->user_id;
+        }
+
+        $creditPayments = [2,3,4];
+
+        if(in_array($request->paymentMethod,$creditPayments)){
+            $type = 0;
+            $transactionType = "Compra";
+        }elseif ($request->paymentMethod == 1) {
+            $type = 1;
+            $transactionType = "Dedução do saldo";
+
+        }
+
+        Transaction::create([
+            'user_id' => $user_id,
+            'value' => $request->credit,
+            'amount' => $request->amount,
+            'description' => $request->description,
+            'status' => 'A',
+            'type' => $type,
+            'paymentReceipt' => $request->file,
         ]);
+
+        toastr()->success("{$transactionType} com sucesso","");
+
+        return redirect()->route('manage.store');
     }
-    public function sell(Request $request){
-        Credit::where('COD_PESSOA', $request->COD_PESSOA)->update([
-            'DS_EMAIL' => $request->DS_EMAIL
-        ]);
+        public function storePayment(Request $request){
+
+            Transaction::create([
+                'user_id' => $request->user_id,
+                'value' => $request->credit,
+                'amount' => $request->amount,
+                'description' => $request->description,
+                'status' => 'P',
+                'type' => '0',
+                'paymentReceipt' => $request->file,
+            ]);
     }
 
-    public function validateCredit(Request $request){
-        Credit::create([
-            'user_id'=> $request->user_id,
-            'description'=> $request->description,
-            'kilo'=> $request->kilo,
-            'credit'=> $request->credit,
-            'paymentReceipt'=> $request->file
-        ]);
-    }
 
     public function extract(Request $request)
     {
-        $laundryServices = LaundryService::when(request('updated_at'), function ($query, $updated_at) {
+        $transactions = Transaction::all()->get();
 
-            return $query->where('updated_at', 'like', "%{$updated_at}%");
-        })->when(request('laundryUser'), function ($query) {
-
-            return $query->wherehas('laundryUser', function ($query) {
-                return $query->where('DS_PEDIDO_TAG', 'like', "%".request('laundryUser')."%")->where([
-                    ['inactivated_at','!=', 'Null'] ]);
-            });
-        },
-
-            function ($query) {
-                return $query->orderBy('updated_at', 'ASC');
-            })->get();
-
-        return view('extract',compact('laundryServices'));
+        return view('extract',compact('transactions'));
     }
 
 
     public function show(Request $request)
     {
-        $laundryServices = LaundryService::when(request('updated_at'), function ($query, $updated_at) {
+        $transactions = Transaction::where([
+                    ["user_id", auth()->id()]
+                ])->orderBy('updated_at', 'ASC')->get();
 
-            return $query->where('updated_at', 'like', "%{$updated_at}%");
-        },
+        return view('laundryService',compact('transactions'));
+    }
 
-            function ($query) {
-                return $query->where([
-                    ["user_id",'=', 1,]
-                ])->orderBy('updated_at', 'ASC');
-            })->get();
+    public function showPaymentManage(){
+        $users = User::orderBy('name', 'ASC')->where('status','=',3)->get();
 
-        return view('laundryService',compact('laundryServices'));
+        return view('manageCredit',compact('users'));
     }
 
     public function showPayments(Request $request)
     {
-        $laundryServices = LaundryService::orderBy('created_at', 'ASC')->where('status','P')->get();
+        $transactions = Transaction::orderBy('created_at', 'ASC')->where('status','P')->get();
 
-        return view('manageCredit',compact('laundryServices'));
+        return view('validatePayment',compact('transactions'));
     }
 
     public function approvePayin(Request $request, $id)
     {
-        LaundryService::where('id', $id)->update(['status' => 'A']);
-        //toastr()->success('', 'Solicitação Aprovada Com Sucesso.');
+        Transaction::where('id', $id)->update(['status' => 'A']);
+        toastr()->success('', 'Pagamento Aprovado Com Sucesso.');
         return Redirect::back();
     }
 
     public function rejectPayin(Request $request, $id)
     {
-        LaundryService::where('id', $id)->update(['status' => 'R']);
-        //toastr()->success('', 'Solicitação Aprovada Com Sucesso.');
+        Transaction::where('id', $id)->update(['status' => 'R']);
+            toastr()->success('', 'Pagamento Rejeitado Com Sucesso.');
         return Redirect::back();
-    }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\LaundryService  $laundryService
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(LaundryService $laundryService)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\LaundryService  $laundryService
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, LaundryService $laundryService)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\LaundryService  $laundryService
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(LaundryService $laundryService)
-    {
-        //
     }
 }

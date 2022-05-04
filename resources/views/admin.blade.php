@@ -33,13 +33,13 @@
                                                         <td>
                                                         <form action="{{route('admin.approves')}}" method="POST">
                                                             @csrf
-                                                            <select name="tipo" required>
+                                                            <select name="tipo" required> &nbsp; &nbsp; &nbsp;
                                                                 <option disabled selected>::Selecione::</option>
                                                                 @foreach($userTypes as $userType)
                                                                     <option value="{{$userType->id}}">{{$userType->name}}</option>
                                                                 @endforeach
                                                             </select>
-                                                            <input name="id" type="hidden" value="{{$user->id}}"> &nbsp; &nbsp; &nbsp;
+                                                            <input name="id" type="hidden" value="{{$user->id}}">&nbsp; &nbsp; &nbsp;
                                                             <button type="submit" class="btn btn-success">Aprovar</button> &nbsp; &nbsp; &nbsp;
                                                             <a class="btn btn-danger" href="{{route('admin.reject', $user->id)}}">Rejeitar</a> &nbsp; &nbsp; &nbsp;
                                                         </form>

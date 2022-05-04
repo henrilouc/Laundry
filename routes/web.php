@@ -49,7 +49,11 @@ Route::middleware('admin')->group(function () {
 
         Route::get('/pagamento', [LaundryServiceController::class, 'indexManage'])->name('manage');
 
+        Route::post('/comprar',  [LaundryServiceController::class, 'adminStore'])->name('manageLaundryService.form');
+
         Route::post('/pagamento-avulso', [LaundryServiceController::class, 'storePayment'])->name('manage.form');
+
+        Route::get('/compra', [LaundryServiceController::class, 'showPaymentManage'])->name('manage.store');
 
         Route::get('/pagamentos', [LaundryServiceController::class, 'showPayments'])->name('manage.search');
 
@@ -57,7 +61,6 @@ Route::middleware('admin')->group(function () {
         Route::get('/extrato', [LaundryServiceController::class, 'indexExtract'])->name('extract');
 
         Route::get('/extratos', [LaundryServiceController::class, 'extract'])->name('extract.search');
-
 
         Route::get('/' , [LoginController::class, 'indexAdmin'])->name('admin');
     });

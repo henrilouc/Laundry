@@ -66,7 +66,7 @@ class UserController extends Controller
         },
 
         function ($query) {
-            return $query->where('status', 0)->where('inactivated_at', null);
+            return $query->where('status', 2)->where('inactivated_at', null);
         })->get();
 
 

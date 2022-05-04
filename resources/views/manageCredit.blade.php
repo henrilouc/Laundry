@@ -2,211 +2,142 @@
 
 @section('content')
     <div class="container">
-        <h2>Comprar Crédito</h2>
+        <h2>Gerir Crédito</h2>
         <div class="row">
-            <div class="col-sm ">
-                <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active text-white bg-secondary" data-toggle="tab" href="#nav-payments" role="tab" aria-selected="true">Pagamento</a>
-                        <a class="nav-item nav-link text-white bg-secondary" data-toggle="tab" href="#nav-shopping" role="tab" aria-selected="false">Payments</a>
-                    </div>
-                </nav>
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show" id="nav-shopping" role="tabpanel">
-                        <form  action="salve"  enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="col-xs-6 col-md-8" style="padding-right: 0px">
-                                    <div class="card border-secondary ">
-                                        <div class="card-header text-white bg-secondary">
-                                            <h4>Registrar Compra Avulsa </h4>
+            <div class="col-sm">
+                <form  action="{{route('manageLaundryService.form')}}"  method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-12" style="padding-right: 0px">
+                            <div class="card border-secondary ">
+                                <div class="card-header text-white bg-secondary">
+                                    <h4>Registrar Compra</h4>
+                                </div>
+                                <div class="card-body cardStyle">
+                                    <div class="compra">
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <select class="custom-select" name="user_id" onchange="listUser(this)" required>
+                                                    <option disabled selected>::CPF::</option>
+                                                    @foreach($users as $user)
+                                                        <option value="{{$user->id}}">{{"$user->cpf - $user->name"}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6" >
+                                                <select class="custom-select userData" name="name" id="name" disabled="disabled">
+                                                    <option disabled selected>::Nome::</option>
+                                                    @foreach($users as $user)
+                                                        <option value="{{$user->id}}">{{$user->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="card-body cardStyle">
-                                            <div class="form-group">
-                                                <input type="text" name="name" placeholder="Nome" class="form-control" autofocus autocomplete="off" value="" />
+                                        <div class="row">
+                                            <div class="form-group col-md-6" readonly>
+                                                <select class="custom-select userData" name="birth" id="birth" disabled="disabled">
+                                                    <option disabled selected>::Email::</option>
+                                                    @foreach($users as $user)
+                                                        <option value="{{$user->id}}">{{$user->email}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
-                                            <div class="form-group">
-                                                <input type="text" name="CPF" placeholder="CPF" class="form-control" id="CPF" value="" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="phone" placeholder="Telefone" class="form-control" autocomplete="off"  id="phone" value="" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Quilo de Roupa</label>
-                                                <span class="text-danger">
-                                                    <label class="text-success "></label>
-                                                </span>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="number" name="kilo" placeholder="00.00 KG" id="Quantity" class="form-control" oninput="convertAmount()" autocomplete="off" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Descrição</label>
-                                                <span class="text-danger">
-                                                    <label class="text-success "></label>
-                                                </span>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="description" placeholder="Descrição"  class="form-control" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label id="labelCompra_Debt">Valor a Pagar</label>
-                                                <br />
-                                                <span class="text-success">
-                                                    <label class="text-success" id="Price" >0.00</label> R$
-                                                 </span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label id="labelCompra_Debt">Forma de Pagamento</label>
-                                                <select name="paymentMethod" class="text-success">
-                                                    <option value="1">Saldo</option>
-                                                    <option value="2">Cartão de Débito</option>
-                                                    <option value="3">Cartão de Crédito</option>
-                                                    <option value="4">Dinheiro</option>
-                                                 </select>
-                                            </div>
-                                            <div class="caption text-center">
-                                                <label class="btn btn-outline-secondary" for="files">Comprovante</label>
-                                                <input class="custom-file-label" type="file" accept="image/*" id="files" name="file" style="display:none" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <span class="text-danger labelCompra_Importe">
-                                                    <label class="text-success labelCompra_Importe" id="labelCompra_Importe"> </label>
-                                                </span>
-                                            </div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-outline-primary">Comprar</button>
-                                                </div>
-                                                <div class="form-group">
-                                                    <a class="btn btn-outline-warning">Voltar</a>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <input name="credit"  type="hidden" id="Credit" value="" />
-                                                <label class="text-danger"> </label>
+                                            <div class="form-group col-md-6" >
+                                                <select class="custom-select userData" name="phone" id="phone" disabled="disabled">
+                                                    <option disabled selected>::Telefone::</option>
+                                                    @foreach($users as $user)
+                                                        <option value="{{$user->id}}">{{$user->phone}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade show active" id="nav-payments" role="tabpanel">
-                        <form action="{{route('laundryService.form')}}" method="post">
-                            @csrf
-                            <div class="row">
-                                <div class="col-xl-7 col-md-5">
-                                    <div class="card border-secondary">
-                                        <div class="card-header text-white bg-secondary">
-                                            <h4>Realizar compra</h4>
-                                        </div>
-                                        <div class="card-body cardStyle">
-                                            <div class="form-group">
-                                                <label>Quilo de Roupa</label>
-                                                <span class="text-danger">
-                                                <label class="text-success "></label>
-                                            </span>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="number" name="kilo" placeholder="00.00 KG" id="Quantity" class="form-control" oninput="convertAmount()" autocomplete="off" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Descrição</label>
-                                                <span class="text-danger">
-                                                <label class="text-success "></label>
-                                            </span>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" name="description"  class="form-control" required />
 
+                                    <div class="compra-avulsa" style="display: none">
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <input type="text" name="cpf" id="cpf" placeholder="CPF"  class="form-control" autocomplete="off" />
                                             </div>
-                                            <div class="form-group">
-                                                <label id="labelCompra_Debt">Valor a Pagar</label>
-                                                <br />
-                                                <span class="text-success">
-                                                    <label class="text-success" id="Price" >0.00</label> R$
-                                                </span>
+                                            <div class="form-group col-md-6" >
+                                                <input type="text" name="name" id="name" placeholder="Nome"  class="form-control" autocomplete="off" />
                                             </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-outline-primary" id="payment">Comprar</button>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <a href="Shopping/Cancel" class="btn btn-outline-warning">Voltar</a>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input name="value" type="hidden" value="1" />
-                                                        <input name="credit"  type="hidden" id="Credit" value="" />
-                                                        <input name="user_id" type="hidden" value="1" />
-                                                    </div>
-                                                </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="form-group col-md-6" readonly>
+                                                 <input type="date" name="birth" id="birth" placeholder="Data de Nascimento"  class="form-control" autocomplete="off" />
+                                            </div>
+                                            <div class="form-group col-md-6" >
+                                                <input type="text" name="phone" id="phone" placeholder="Telefone"  class="form-control" autocomplete="off" />
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-check">
+                                        <input id="chkBuy" name="chkBuy" type="checkbox" data-toggle="toggle" onclick="switchBuy()">
+                                        <label for="chkBuy"><h5>Compra Avulsa</h5></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quilo de Roupa</label>
+                                        <span class="text-danger">
+                                            <label class="text-success"></label>
+                                        </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" name="amount" placeholder="00.00 KG" id="Quantity" class="form-control" oninput="convertAmount()" autocomplete="off" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Descrição</label>
+                                        <span class="text-danger">
+                                            <label class="text-success "></label>
+                                        </span>
+                                        <input type="text" name="description" placeholder="Descrição"  class="form-control" required />
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-3 caption text-center">
+                                            <label id="labelCompra_Debt">Valor a Pagar</label>
+                                            <br />
+                                            <span class="text-success">
+                                                <label class="text-success" id="Price" >0.00</label> R$
+                                             </span>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label id="labelCompra_Debt">Forma de Pagamento</label>
+                                            <select name="paymentMethod" class="custom-select text-success">
+                                                <option value="1">Saldo</option>
+                                                <option value="2">Cartão de Débito</option>
+                                                <option value="3">Cartão de Crédito</option>
+                                                <option value="4">Dinheiro</option>
+                                             </select>
+                                        </div>
+                                        <div class="form-group col-md-3 mt-2 caption text-center">
+                                        <br/>
+                                            <label class="btn btn-outline-secondary" for="files">Comprovante</label>
+                                            <input class="custom-file-label" type="file" accept="image/*" id="files" name="file" style="display:none" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group text-center">
+                                        <span class="text-danger labelCompra_Importe">
+                                            <label class="text-success labelCompra_Importe" id="labelCompra_Importe"> </label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group text-center">
+                                            <button type="submit" class="btn btn-outline-primary">Comprar</button>
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <a class="btn btn-outline-warning">Voltar</a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="credit"  type="hidden" id="Credit" value="" />
+                                        <label class="text-danger"> </label>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card border-secondary ">
-                    <div class="card-header text-white bg-secondary">
-                        <h4>Validar Pagamento</h4>
-                        <form action="{{route('laundryService.show')}}" method="GET">
-
-                        </form>
-                    </div>
-                    <div class="card-body cardStyle">
-
-                        @if(isset($laundryServices))
-                            <table id= "dataTable" class="table table-hover">
-                                @if(count(array($laundryServices)) > 0)
-                                    <thead>
-                                    <tr>
-                                        <th>Quantidade(KG)</th>
-                                        <th>Valor Pago</th>
-                                        <th>Descrição</th>
-                                        <th>Data</th>
-                                        <th>Comprovante</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($laundryServices as $laundryService)
-                                        <tr>
-                                            <td>{{ $laundryService->kilo }}</td>
-                                            <td>{{ $laundryService->credit  }}</td>
-                                            <td>{{ $laundryService->description  }}</td>
-                                            <td>{{date('d/m/Y H:i ',strtotime($laundryService->updated_at))}} </td>
-                                            <td>Arquivo</td>
-                                            <td><button type="button" class="btn btn-success" onclick="window.location='{{route('admin.payinApprove', $laundryService->id)}}'">Aprovar</button></td>
-                                            <td><button type="button" class="btn btn-danger" onclick="window.location='{{route('admin.payinReject', $laundryService->id)}}'">Rejeitar</button></td>
-                                        </tr>
-                                    @endforeach
-                                    @else
-
-                                        <tr><td>Nenhum registro encontrado.</td></tr>
-                                    @endif
-                                    </tbody>
-                            </table>
-                        @endif
-                        <div class="form-group">
-                            <label>
-                                Importe total:
-                                <span class="text-danger">
-                                <label class="text-success "></label>
-
-                            </span>
-                            </label>
-                            <div class="text-center">
-
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
