@@ -68,6 +68,9 @@
                                 </li>
                             <?php endif; ?>
                         <?php else: ?>
+                            <li class="nav-item">
+                                <a class="nav-link"> Saldo: <?php echo e(Auth::user()->credit->amount); ?>KG</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <?php echo e(Auth::user()->name); ?>
@@ -87,6 +90,7 @@
                                     </form>
                                 </div>
                             </li>
+
                         <?php endif; ?>
                     </ul>
                 </div>
