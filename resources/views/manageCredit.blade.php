@@ -102,7 +102,7 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label id="labelCompra_Debt">Forma de Pagamento</label>
-                                            <select name="paymentMethod" class="custom-select text-success">
+                                                <select name="paymentMethod" class="custom-select text-success">
                                                 <option value="1">Saldo</option>
                                                 <option value="2">Cartão de Débito</option>
                                                 <option value="3">Cartão de Crédito</option>

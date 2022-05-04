@@ -100,6 +100,7 @@ class UserController extends Controller
         }catch (\Exception $e){
             die($e);
         }
+
         Notification::route('mail', config('mail.from.address'))
             ->notify(new UserApproved($user));
         toastr()->success('', 'Usuario Aprovado Com Sucesso.');

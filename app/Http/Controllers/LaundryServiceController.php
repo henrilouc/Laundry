@@ -90,7 +90,7 @@ class LaundryServiceController extends Controller
 
         }
 
-        Transaction::create([
+        $transaction = Transaction::create([
             'user_id' => $user_id,
             'value' => $request->credit,
             'amount' => $request->amount,
@@ -99,6 +99,8 @@ class LaundryServiceController extends Controller
             'type' => $type,
             'paymentReceipt' => $request->file,
         ]);
+
+        $this->updateCredit($transaction);
 
         toastr()->success("{$transactionType} com sucesso","");
 
@@ -115,6 +117,7 @@ class LaundryServiceController extends Controller
                 'type' => '0',
                 'paymentReceipt' => $request->file,
             ]);
+
     }
 
 
@@ -150,15 +153,33 @@ class LaundryServiceController extends Controller
 
     public function approvePayin(Request $request, $id)
     {
-        Transaction::where('id', $id)->update(['status' => 'A']);
+        $transaction = Transaction::where('id', $id)->update(['status' => 'A']);
         toastr()->success('', 'Pagamento Aprovado Com Sucesso.');
+
+        $this->updateCredit($transaction);
         return Redirect::back();
+
     }
 
     public function rejectPayin(Request $request, $id)
     {
         Transaction::where('id', $id)->update(['status' => 'R']);
-            toastr()->success('', 'Pagamento Rejeitado Com Sucesso.');
+        toastr()->success('', 'Pagamento Rejeitado Com Sucesso.');
         return Redirect::back();
+    }
+
+    private function updateCredit($transaction)
+    {
+        $buy = Transaction::where('type' , 0)->where('user_id', $transaction->user_id)->sum('amount');
+        $sale = Transaction::where('type' , 1)->where('user_id', $transaction->user_id)->sum('amount');
+        $credit = $buy - $sale;
+
+
+        Credit::updateOrCreate([
+            'user_id' => $transaction->user_id
+        ],[
+            'user_id' => $transaction->user_id,
+            'amount'  => $credit
+        ]);
     }
 }

@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserType::class, 'id', 'user_type_id');
     }
+
+    public function credit()
+    {
+        return $this->hasOne(Credit::class);
+    }
 }
