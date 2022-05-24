@@ -22,6 +22,10 @@ class LaundryServiceController extends Controller
         Return  redirect()->route('laundryService.show');
     }
 
+
+    public function dashboard(){
+        return view('dashboard');
+    }
     public function indexExtract()
     {
         Return view('extract');

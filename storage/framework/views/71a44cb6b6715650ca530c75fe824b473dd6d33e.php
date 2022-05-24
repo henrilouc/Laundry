@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('content'); ?>
     <div class="container">
         <h2>Gerir Preço</h2>
@@ -15,15 +17,15 @@
                                     <div class="row">
                                         <div class="form-group col-md-2">
                                             <label>Valor(R$)/KG</label>
-                                            <input type="number" name="multiplier" class="form-control" oninput="convertAmount()" autocomplete="off" required />
+                                            <input type="number" name="multiplier" class="form-control" autocomplete="off" required />
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>Minimo(KG)</label>
-                                            <input type="number" name="min" class="form-control" oninput="convertAmount()" autocomplete="off" required />
+                                            <input type="number" name="min" class="form-control" autocomplete="off" required />
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label>Máximo(KG)</label>
-                                            <input type="number" name="max" class="form-control" oninput="convertAmount()" autocomplete="off" required />
+                                            <input type="number" name="max" class="form-control" autocomplete="off" required />
                                             </div>
                                         <div class="form-group col-md-6">
                                             <label>Descrição</label>
