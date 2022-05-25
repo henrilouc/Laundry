@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Validar Crédito
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -11,10 +15,10 @@
 
                         </form>
                     </div>
-                    <div class="card-body cardStyle table-responsive">
+                    <div class="card-body cardStyle">
 
                         @if(isset($transactions))
-                            <table id= "dataTable" class="table  table-hover">
+                            <table id= "dataTable" class="row-border" style="width:100%">
                                 @if(count(array($transactions)) > 0)
                                     <thead>
                                     <tr>
