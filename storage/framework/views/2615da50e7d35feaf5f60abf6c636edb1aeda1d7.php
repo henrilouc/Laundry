@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row justify-content-center">
@@ -11,7 +9,7 @@
                     <form method="POST" action="<?php echo e(route('login')); ?>">
                         <?php echo csrf_field(); ?>
 
-                        <div class="row mb-3">
+                        <div class="row mb-3 input-group input-group-outline">
                             <label for="email" class="col-md-4 col-form-label text-md-end"><?php echo e(__('Email Address')); ?></label>
 
                             <div class="col-md-6">
@@ -39,7 +37,7 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-3 input-group input-group-outline">
                             <label for="password" class="col-md-4 col-form-label text-md-end"><?php echo e(__('Password')); ?></label>
 
                             <div class="col-md-6">

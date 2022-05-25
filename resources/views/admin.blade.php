@@ -33,7 +33,7 @@
                                                         <td>
                                                         <form action="{{route('admin.approves')}}" method="POST">
                                                             @csrf
-                                                            <select name="tipo" required> &nbsp; &nbsp; &nbsp;
+                                                            <select class="custom-select w-40" name="tipo" required> &nbsp; &nbsp; &nbsp;
                                                                 <option disabled selected>::Selecione::</option>
                                                                 @foreach($userTypes as $userType)
                                                                     <option value="{{$userType->id}}">{{$userType->name}}</option>

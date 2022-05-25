@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('content'); ?>
 <!-- End Navbar -->
     <div class="container-fluid py-4">

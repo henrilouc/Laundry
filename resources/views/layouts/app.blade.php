@@ -15,7 +15,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+{{--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>--}}
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
@@ -26,14 +26,14 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">--}}
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/apple-icon.png') }}">
     <link rel="icon" type="image/png" href="{{ asset('dashboard/img/favicon.png') }}">
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700">
+{{--    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700">--}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Nucleo Icons -->
     <link href="{{ asset('dashboard/css/nucleo-icons.css') }}" rel="stylesheet">
@@ -111,25 +111,37 @@
                 <h6 class="font-weight-bolder mb-0">Dashboard</h6>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-
-                <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-                        <div class="sidenav-toggler-inner">
-                            <i class="sidenav-toggler-line"></i>
-                            <i class="sidenav-toggler-line"></i>
-                            <i class="sidenav-toggler-line"></i>
-                        </div>
-                    </a>
-                </li>
-                <li class="nav-item px-3 d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-body p-0">
-                        <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer" aria-hidden="true"></i>
-                    </a>
-                </li>
-                <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-bell cursor-pointer" aria-hidden="true"></i>
-                    </a>
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                    <div class="input-group input-group-outline">
+                        <label class="form-label">Type here...</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <ul class="navbar-nav  justify-content-end">
+                    <li class="nav-item d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                            <i class="fa fa-user me-sm-1"></i>
+                            <span class="d-sm-inline d-none">Sign In</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                            <div class="sidenav-toggler-inner">
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item px-3 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-body p-0">
+                            <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-bell cursor-pointer"></i>
+                        </a>
                     <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                         <li class="mb-2">
                             <a class="dropdown-item border-radius-md" href="javascript:;">

@@ -11,10 +11,10 @@
 
                         </form>
                     </div>
-                    <div class="card-body cardStyle">
+                    <div class="card-body cardStyle table-responsive">
 
                         @if(isset($transactions))
-                            <table id= "dataTable" class="table table-hover">
+                            <table id= "dataTable" class="table  table-hover">
                                 @if(count(array($transactions)) > 0)
                                     <thead>
                                     <tr>
