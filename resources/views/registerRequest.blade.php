@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Validar Usuário
+@endsection
 @section('content')
     <div>
         <div class="mx-auto pull-right">

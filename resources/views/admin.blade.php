@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Válidar Usuário
+@endsection
 @section('content')
         <div class="container">
             <div class="row">
@@ -20,7 +22,7 @@
                                                 <th class="text-center">Nome</th>
                                                 <th class="text-center">Email</th>
                                                 <th class="text-center">Telefone</th>
-                                                <th class="ps-6">Tipo</th>
+                                                <th class="ps-5">Tipo</th>
 
                                             </tr>
                                             </thead>
@@ -34,15 +36,24 @@
                                                         <td class="text-center">
                                                         <form action="{{route('admin.approves')}}" method="POST">
                                                             @csrf
-                                                            <select class="custom-select w-40" name="tipo" required> &nbsp; &nbsp; &nbsp;
-                                                                <option disabled selected>::Selecione::</option>
-                                                                @foreach($userTypes as $userType)
-                                                                    <option value="{{$userType->id}}">{{$userType->name}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            <input name="id" type="hidden" value="{{$user->id}}">&nbsp; &nbsp; &nbsp;
-                                                            <button type="submit" class="btn btn-success">Aprovar</button> &nbsp; &nbsp; &nbsp;
-                                                            <a class="btn btn-danger" href="{{route('admin.reject', $user->id)}}">Rejeitar</a> &nbsp; &nbsp; &nbsp;
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="input-group input-group-static mb-4">
+                                                                        <select class="form-control w-40" name="tipo" required> &nbsp; &nbsp; &nbsp;
+                                                                            <option class="text-center" disabled selected>::Selecione::</option>
+                                                                            @foreach($userTypes as $userType)
+                                                                                <option class="text-center" value="{{$userType->id}}">{{$userType->name}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>                                                                <div class="col-md-2">
+                                                                <div class="col-md-2">
+
+                                                                    <input name="id" type="hidden" value="{{$user->id}}">&nbsp; &nbsp; &nbsp;
+                                                                    <button type="submit" class="btn btn-success">Aprovar</button> &nbsp; &nbsp; &nbsp;
+                                                                    <a class="btn btn-danger" href="{{route('admin.reject', $user->id)}}">Rejeitar</a> &nbsp; &nbsp; &nbsp;
+                                                                </div>
+                                                            </div>
                                                         </form>
                                                         </td>
                                                 </tr>
