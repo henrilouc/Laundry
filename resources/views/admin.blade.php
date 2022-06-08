@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
-        <div class="mx-auto pull-right">
-            <section class="contact__block contact-wrapper">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12" style="margin-top:40px">
-                            <h4>Gerir Solicitações</h4><hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card border-secondary ">
+                        <div class="card-header text-white bg-secondary">
+                            <h4>Gerir Solicitações</h4>
+                        </div>
+                        <div class="card-body cardStyle">
                             <form>
                                 @csrf
                                 @if(isset($users))
@@ -15,22 +16,22 @@
                                         @if(count(array($users)) > 0)
                                             <thead>
                                             <tr>
-                                                <th>CPF</th>
-                                                <th>Nome</th>
-                                                <th>Email</th>
-                                                <th>Telefone</th>
-                                                <th>Tipo</th>
+                                                <th class="text-center">CPF</th>
+                                                <th class="text-center">Nome</th>
+                                                <th class="text-center">Email</th>
+                                                <th class="text-center">Telefone</th>
+                                                <th class="ps-6">Tipo</th>
 
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($users as $user)
                                                 <tr>
-                                                        <td>{{ $user->cpf  }}</td>
-                                                        <td>{{ $user->name }}</td>
-                                                        <td>{{ $user->email  }}</td>
-                                                        <td>{{ $user->phone  }}</td>
-                                                        <td>
+                                                        <td class="text-center">{{ $user->cpf  }}</td>
+                                                        <td class="text-center">{{ $user->name }}</td>
+                                                        <td class="text-center">{{ $user->email  }}</td>
+                                                        <td class="text-center">{{ $user->phone  }}</td>
+                                                        <td class="text-center">
                                                         <form action="{{route('admin.approves')}}" method="POST">
                                                             @csrf
                                                             <select class="custom-select w-40" name="tipo" required> &nbsp; &nbsp; &nbsp;
@@ -51,11 +52,11 @@
                                             @endif
                                             </tbody>
                                     </table>
-                            @endif
+                                @endif
+                            </form>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
-    </div>
 @endsection
