@@ -13,11 +13,13 @@
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
+                        <div class="row mb-3 justify-content-center">
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                <div class="input-group input-group-outline">
+                                    <label for="email" class="form-label">{{ __('Email') }}</label>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                </div>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -27,11 +29,13 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Senha') }}</label>
+                        <div class="row mb-3 justify-content-center">
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <div class="input-group input-group-outline">
+                                    <label for="password" class="form-label">{{ __('Senha') }}</label>
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                </div>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -41,11 +45,13 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar Senha') }}</label>
+                        <div class="row mb-3 justify-content-center">
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <div class="input-group input-group-outline">
+                                    <label for="password-confirm" class="form-label">{{ __('Confirmar Senha') }}</label>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                </div>
                             </div>
                         </div>
 
