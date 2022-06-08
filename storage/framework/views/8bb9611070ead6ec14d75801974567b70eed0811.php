@@ -1,5 +1,8 @@
 
 
+<?php $__env->startSection('title'); ?>
+    Dashboard
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <!-- End Navbar -->
     <div class="container-fluid py-4">
@@ -115,27 +118,6 @@
             </div>
         </div>
 
-
-        <footer class="footer py-4  ">
-            <div class="container-fluid">
-                <div class="col-lg-6">
-                    <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
     </div>
     <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 969px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 734px;"></div></div></main>
 <div class="fixed-plugin ps">

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -16,7 +16,7 @@
                             <div class="col-md-6 ">
                                 <div class="input-group input-group-outline">
                                     <label for="email" class="form-label">{{ __('Email Address') }}</label>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -24,7 +24,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                            
+
                             </div>
                         </div>
 
@@ -48,8 +48,8 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                    <label class="custom-control-label" for="remember">
+                                        {{ __('Lembrar-me') }}
                                     </label>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ __('Esqueci minha senha?') }}
                                     </a>
                                 @endif
                             </div>
