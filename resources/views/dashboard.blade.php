@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title')
+    Dashboard
+@endsection
 @section('content')
 <!-- End Navbar -->
     <div class="container-fluid py-4">
@@ -30,9 +33,6 @@
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
-                    <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than lask month</p>
-                    </div>
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -115,27 +115,6 @@
             </div>
         </div>
 
-
-        <footer class="footer py-4  ">
-            <div class="container-fluid">
-                <div class="col-lg-6">
-                    <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
     </div>
     <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 969px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 734px;"></div></div></main>
 <div class="fixed-plugin ps">
@@ -213,8 +192,6 @@
     </div>
     <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
 <!--   Core JS Files   -->
-<script src="{{ asset('dashboard/js/core/popper.min.js') }}" ></script>
-<script src="{{ asset('dashboard/js/core/bootstrap.min.js') }}" ></script>
 <script src="{{ asset('dashboard/js/plugins/perfect-scrollbar.min.js') }}" ></script>
 <script src="{{ asset('dashboard/js/plugins/smooth-scrollbar.min.js') }}" ></script>
 <script src="{{ asset('dashboard/js/plugins/chartjs.min.js') }}" ></script>
