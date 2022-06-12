@@ -46,7 +46,7 @@
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
-                                                                </div>                                                                <div class="col-md-2">
+                                                                </div>
                                                                 <div class="col-md-2">
 
                                                                     <input name="id" type="hidden" value="{{$user->id}}">&nbsp; &nbsp; &nbsp;

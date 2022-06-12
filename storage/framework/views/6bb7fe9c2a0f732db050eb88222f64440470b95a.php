@@ -45,7 +45,7 @@
                                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                         </select>
                                                                     </div>
-                                                                </div>                                                                <div class="col-md-2">
+                                                                </div>
                                                                 <div class="col-md-2">
 
                                                                     <input name="id" type="hidden" value="<?php echo e($user->id); ?>">&nbsp; &nbsp; &nbsp;
