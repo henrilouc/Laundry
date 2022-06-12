@@ -141,7 +141,11 @@ class LaundryServiceController extends Controller
                     ["user_id", auth()->id()]
                 ])->orderBy('updated_at', 'ASC')->get();
 
-        return view('laundryService',compact('transactions'));
+        $prices = Price::where([
+            ["user_type_id", auth()->user()->user_type_id]
+        ])->get();
+
+        return view('laundryService',compact('transactions','prices'));
     }
 
     public function showPaymentManage(){

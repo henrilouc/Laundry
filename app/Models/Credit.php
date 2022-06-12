@@ -14,4 +14,6 @@ class Credit extends Model
       'created_at',
       'updated_at'
     ];
+
+
 }

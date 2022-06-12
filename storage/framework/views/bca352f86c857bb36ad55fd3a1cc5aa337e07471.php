@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('title'); ?>
     Validar Crédito
 <?php $__env->stopSection(); ?>
