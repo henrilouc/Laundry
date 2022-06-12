@@ -104,18 +104,14 @@
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                 </div>
-                <ul class="navbar-nav  justify-content-end">
+                <ul class="navbar-nav justify-content-end">
 
-                    <li class="nav-item d-flex align-items-center">
-                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-
-                            <a class="nav-link"> Saldo: <?php echo e(Auth::user()->credit->amount); ?>KG</a>
-                        </a>
+                    <li class="nav-item ">
+                        <h6 class="nav-link font-weight-bold">Saldo: <?php echo e(Auth::user()->credit->amount); ?>KG</h6>
                     </li>
 
-
                     <li class="nav-item dropdown">
-                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-2" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="javascript:;" class="nav-link text-body font-weight-normal px-2" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="d-sm-inline d-none"><?php echo e(Auth::user()->name); ?></span>
                         </a>
 
@@ -181,15 +177,15 @@
 
                                 <?php if(Route::has('register')): ?>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<?php echo e(route('register')); ?>"><?php echo e(__('Register')); ?></a>
+                                        <a class="nav-link" href="<?php echo e(route('register')); ?>"><?php echo e(__('Cadastre-se')); ?></a>
                                     </li>
                                 <?php endif; ?>
                             <?php else: ?>
                                 <li class="nav-item">
-                                    <a class="nav-link"> Saldo: <?php echo e(Auth::user()->credit->amount); ?>KG</a>
+                                    <a class="nav-link"><h6> Saldo: <?php echo e(Auth::user()->credit->amount); ?>KG</h6></a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <?php echo e(Auth::user()->name); ?>
 
                                     </a>
