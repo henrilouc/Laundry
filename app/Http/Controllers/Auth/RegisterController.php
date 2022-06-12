@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Credit;
 use App\Models\UserType;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -58,15 +60,10 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
+
     protected function create(array $data)
     {
-        return User::create([
+         $user = User::create([
             'user_type_id' => UserType::GUEST,
             'name' => $data['name'],
             'email' => $data['email'],
@@ -76,5 +73,14 @@ class RegisterController extends Controller
             'birth'  => $data['birth'],
             'cpf'   =>  $data['cpf']
         ]);
+
+         Credit::create([
+                'user_id' => $user->id,
+                'amount' => 0,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+    return $user;
     }
+
 }

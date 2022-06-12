@@ -1,4 +1,6 @@
-
+<?php $__env->startSection('title'); ?>
+    Validar Crédito
+<?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
     <div class="container">
@@ -14,13 +16,13 @@
                     <div class="card-body cardStyle">
 
                         <?php if(isset($transactions)): ?>
-                            <table id= "dataTable" class="table table-hover">
+                            <table id= "dataTable" class="row-border" style="width:100%">
                                 <?php if(count(array($transactions)) > 0): ?>
                                     <thead>
                                     <tr>
                                         <th>Quantidade(KG)</th>
-                                        <th>Valor Pago</th>
-                                        <th>Descrição</th>
+                                        <th >Valor Pago</th>
+                                        <th class="text-center">Descrição</th>
                                         <th>Data</th>
                                         <th>Comprovante</th>
                                         <th></th>
@@ -30,8 +32,8 @@
                                     <tbody>
                                     <?php $__currentLoopData = $transactions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $transaction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td><?php echo e($transaction->amount); ?></td>
-                                            <td><?php echo e($transaction->value); ?></td>
+                                            <td class="text-center"><?php echo e($transaction->amount); ?></td>
+                                            <td class="text-center"><?php echo e($transaction->value); ?> R$</td>
                                             <td><?php echo e($transaction->description); ?></td>
                                             <td><?php echo e(date('d/m/Y H:i ',strtotime($transaction->updated_at))); ?> </td>
                                             <td>Arquivo</td>
@@ -46,18 +48,7 @@
                                     </tbody>
                             </table>
                         <?php endif; ?>
-                        <div class="form-group">
-                            <label>
-                                Importe total:
-                                <span class="text-danger">
-                                <label class="text-success "></label>
 
-                            </span>
-                            </label>
-                            <div class="text-center">
-
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

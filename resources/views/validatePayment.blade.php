@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Validar Crédito
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -14,13 +18,13 @@
                     <div class="card-body cardStyle">
 
                         @if(isset($transactions))
-                            <table id= "dataTable" class="table table-hover">
+                            <table id= "dataTable" class="row-border" style="width:100%">
                                 @if(count(array($transactions)) > 0)
                                     <thead>
                                     <tr>
                                         <th>Quantidade(KG)</th>
-                                        <th>Valor Pago</th>
-                                        <th>Descrição</th>
+                                        <th >Valor Pago</th>
+                                        <th class="text-center">Descrição</th>
                                         <th>Data</th>
                                         <th>Comprovante</th>
                                         <th></th>
@@ -30,8 +34,8 @@
                                     <tbody>
                                     @foreach($transactions as $transaction)
                                         <tr>
-                                            <td>{{ $transaction->amount }}</td>
-                                            <td>{{ $transaction->value  }}</td>
+                                            <td class="text-center">{{ $transaction->amount }}</td>
+                                            <td class="text-center">{{ $transaction->value  }} R$</td>
                                             <td>{{ $transaction->description  }}</td>
                                             <td>{{date('d/m/Y H:i ',strtotime($transaction->updated_at))}} </td>
                                             <td>Arquivo</td>
@@ -46,18 +50,7 @@
                                     </tbody>
                             </table>
                         @endif
-                        <div class="form-group">
-                            <label>
-                                Importe total:
-                                <span class="text-danger">
-                                <label class="text-success "></label>
 
-                            </span>
-                            </label>
-                            <div class="text-center">
-
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

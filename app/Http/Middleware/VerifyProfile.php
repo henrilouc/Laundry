@@ -19,7 +19,7 @@ class VerifyProfile
     {
         if(auth()->check()){
             if(auth()->user()->user_type_id == UserType::ADMIN) {
-                return response()->redirectToRoute('admin');
+                return response()->redirectToRoute('dashboard');
             }
             if(auth()->user()->user_type_id == UserType::GUEST) {
                 return response()->redirectToRoute('waiting');

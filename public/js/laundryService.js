@@ -4,7 +4,7 @@ function convertAmount(multiplier){
     const Price = document.getElementById("Price");
     const Credit = document.getElementById("Credit");
     Credit.value = Quantity
-    Price.innerHTML = numberDecimal(Quantity * 14);
+    Price.innerHTML = numberDecimal(Quantity );
 }
 
 function numberDecimal(Quantity) {

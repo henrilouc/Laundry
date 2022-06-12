@@ -30,7 +30,6 @@ class laundryController extends Controller
      */
     public function store(Request $request)
     {
-
         return Laundry::create($request->all());
     }
 
@@ -49,8 +48,8 @@ class laundryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+         * @param  int  $id
+         * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
