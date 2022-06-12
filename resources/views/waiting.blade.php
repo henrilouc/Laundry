@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Bem vindo!') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('Solicitação Esperando Por Aprovação') }}
+                    {{ __('Sua Solicitação Esta Em Aprovação Pelo Administrador') }}
                 </div>
             </div>
         </div>
