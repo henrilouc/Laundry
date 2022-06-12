@@ -56,7 +56,7 @@
 
                                         <div class="row">
                                             <div class="form-group text-center">
-                                                <button type="submit" class="btn btn-outline-primary">Registrar</button>
+                                                <button type="submit" class="btn btn-info">Confirmar</button>
                                             </div>
                                         </div>
                                     </div>

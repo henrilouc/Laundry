@@ -13,9 +13,10 @@
                                     </div>
                                     <div class="card-body cardStyle ">
                                         <div class="col-md-5">
-                                            <div class="input-group input-group-outline my-3 ">
-                                                <label class="form-label " for="Quantity" >Quilo de Roupa</label>
-                                                <input type="number" name="amount" id="Quantity" class="form-control" oninput="convertAmount()" autocomplete="off" required />
+                                            <div class="input-group input-group-static my-3 ">
+                                                <label>Quilo de Roupa</label>
+                                                <label class="form-label " for="Quantity" ></label>
+                                                <input type="number" name="amount" id="Quantity" class="form-control" oninput="convertAmount(<?php echo e($prices); ?>)" autocomplete="off" required />
                                             </div>
                                         </div>
                                         <div class="col-md-12 bg-gradient-faded-light" >
@@ -59,6 +60,7 @@
             <div class="card border-secondary ">
                 <div class="card-header text-white bg-secondary">
                     <h2>Consultar Extrato</h2>
+
                     <form action="<?php echo e(route('laundryService.show')); ?>" method="GET">
 
                     </form>
