@@ -55,11 +55,11 @@ class LaundryServiceController extends Controller
             'description'=> $request->description,
             'type' => 0,
             'status' => 'P',
-            'paymentReceipt'=> $request->file
+            'paymentReceipt'=> $request->file('file')->store('comprovantes')
         ]);
 
 
-        return redirect()->route('laundryService');
+        return redirect()->route('home');
     }
 
 

@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-shopping" role="tabpanel">
-                    <form action="{{route('laundryService.form')}}" method="post">
+                    <form action="{{route('laundryService.form')}}" method="post" enctype="multipart/form-data">
                         @csrf
                             <div class="col-md-7 pe-0">
                                 <div class="card border-secondary">

@@ -30,7 +30,7 @@ Route::middleware('verifyProfile')->group(function () {
 
 Route::middleware('user')->group(function () {
 
-    Route::get('/comprar/{laundryServices?}',  [LaundryServiceController::class, 'ind ex'])->name('laundryService');
+    Route::get('/comprar/{laundryServices?}',  [LaundryServiceController::class, 'index'])->name('laundryService');
 
     Route::post('/comprar',  [LaundryServiceController::class, 'store'])->name('laundryService.form');
 
