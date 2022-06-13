@@ -4,7 +4,7 @@
         <div class="col-md-6">
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-shopping" role="tabpanel">
-                    <form action="<?php echo e(route('laundryService.form')); ?>" method="post">
+                    <form action="<?php echo e(route('laundryService.form')); ?>" method="post" enctype="multipart/form-data">
                         <?php echo csrf_field(); ?>
                             <div class="col-md-7 pe-0">
                                 <div class="card border-secondary">
