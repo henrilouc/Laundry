@@ -66,6 +66,10 @@ Route::middleware('admin')->group(function () {
         Route::get('/gerir-preco', [PriceController::class, 'index'])->name('managePrice');
 
         Route::get('/gerir-precos', [PriceController::class, 'show'])->name('managePrice.show');
+        Route::get('/remover-preco/{id}', [PriceController::class, 'softDelete'])->name('managePrice.remove');
+
+
+
 
         Route::post('/add-preco', [PriceController::class, 'store'])->name('managePrice.form');
         Route::get('/dashboard', [LaundryServiceController::class, 'dashboard'])->name('dashboard');

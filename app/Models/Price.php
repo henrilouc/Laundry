@@ -16,5 +16,6 @@ class Price extends Model
         'description',
         'created_at',
         'updated_at',
+        'inactivated_at'
     ];
 }

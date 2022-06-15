@@ -1,7 +1,7 @@
-
 <?php $__env->startSection('title'); ?>
     Gerir Preço
 <?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
     <div class="container">
         <div class="row">
@@ -9,7 +9,7 @@
                 <form action="<?php echo e(route('managePrice.form')); ?>"  method="post" enctype="multipart/form-data">
                     <?php echo csrf_field(); ?>
                     <div class="col-md-12 pe-0">
-                        <div class="card border-secondary ">
+                        <div class="card border-secondary rounded-0">
                             <div class="card-header text-white bg-secondary">
                                 <h4>Registrar Preço</h4>
                             </div>
@@ -53,12 +53,8 @@
                                         </div>
                                     </div>
                                     <div class="row">
-
-
-                                        <div class="row">
-                                            <div class="form-group text-center">
-                                                <button type="submit" class="btn btn-info">Confirmar</button>
-                                            </div>
+                                        <div class="form-group text-center">
+                                            <button type="submit" class="btn btn-info">Confirmar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -66,6 +62,55 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="col-md-12 pe-0">
+                        <div class="card border-secondary rounded-0 rounded-bottom">
+
+                            <div class="card-body cardStyle">
+                                <?php if(isset($prices)): ?>
+                                    <table id= "dataTable" class="row-border" style="width:100%">
+                                        <?php if(count(array($prices)) > 0): ?>
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center">Preço</th>
+                                                <th class="text-center" >Minimo</th>
+                                                <th class="text-center">Máximo</th>
+                                                <th class="text-center">Tipo de cliente</th>
+                                                <th class="text-center">Descrição</th>
+                                                <th class="text-center"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php $__currentLoopData = $prices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $price): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <tr>
+                                                    <td class="text-center"><?php echo e($price->multiplier); ?> R$/KG</td>
+                                                    <td class="text-center"><?php echo e($price->min); ?> KG</td>
+                                                    <td class="text-center"><?php echo e($price->max); ?> KG</td>
+                                                    <td class="text-center"><?php echo e($price->user_type_id); ?></td>
+                                                    <td class="text-center"><?php echo e($price->description); ?></td>
+
+                                                    <td><button type="button" class="btn" onclick="window.location='<?php echo e(route('managePrice.remove', $price->id)); ?>'"><span class="material-icons">delete</span></button></td>
+                                                </tr>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                        <?php endif; ?>
+                                            </tbody>
+                                    </table>
+                                <?php else: ?>
+                                    <table id= "dataTable" class="row-border" style="width:100%">
+                                        <tr><td>Nenhum registro encontrado.</td></tr>
+                                    </table>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
