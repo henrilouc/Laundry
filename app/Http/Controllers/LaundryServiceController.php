@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionFormRequest;
 use App\Models\Credit;
 use App\Models\Price;
 use App\Models\Sale;
@@ -45,7 +46,7 @@ class LaundryServiceController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(TransactionFormRequest $request)
     {
 
         Transaction::create([
