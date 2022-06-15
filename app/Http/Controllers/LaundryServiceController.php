@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AdminStoreFormRequest;
 use App\Http\Requests\TransactionFormRequest;
 use App\Models\Credit;
+use App\Models\LaundryService;
 use App\Models\Price;
 use App\Models\Sale;
 use App\Models\Transaction;
@@ -13,6 +14,7 @@ use App\Models\UserType;
 use App\Notifications\NewUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
@@ -26,7 +28,14 @@ class LaundryServiceController extends Controller
 
 
     public function dashboard(){
-        return view('dashboard');
+
+        $cards_data = LaundryService::select(DB::raw('
+        CASE WHEN status = "P" THEN count(id) ELSE 0 END AS Pendentes,
+        CASE WHEN status = "A" THEN count(id) ELSE 0 END AS Aprovadas,
+        count(id) as Vendas,
+        sum(kilo) as Valor_vendas'))->groupBy('status')->get();
+
+        return view('dashboard',compact('cards_data'));
     }
     public function indexExtract()
     {
