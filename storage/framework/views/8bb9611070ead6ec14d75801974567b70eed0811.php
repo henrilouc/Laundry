@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     Dashboard
 <?php $__env->stopSection(); ?>
@@ -14,8 +12,8 @@
                             <i class="material-icons opacity-10">weekend</i>
                         </div>
                         <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">Lucro diário</p>
-                            <h4 class="mb-0">R$53k</h4>
+                            <p class="text-sm mb-0 text-capitalize">Solicitações Pendentes</p>
+                            <h4 class="mb-0"><?php echo e($cards_data[0]->Pendentes); ?></h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
@@ -28,8 +26,8 @@
                             <i class="material-icons opacity-10">person</i>
                         </div>
                         <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">Usuários Diários</p>
-                            <h4 class="mb-0">2.300</h4>
+                            <p class="text-sm mb-0 text-capitalize">Solicitações Aprovadas</p>
+                            <h4 class="mb-0"><?php echo e($cards_data[0]->Aprovadas); ?></h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
@@ -42,8 +40,8 @@
                             <i class="material-icons opacity-10">person</i>
                         </div>
                         <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">Novos Clients</p>
-                            <h4 class="mb-0">3.462</h4>
+                            <p class="text-sm mb-0 text-capitalize">Quantidade de Vendas</p>
+                            <h4 class="mb-0"><?php echo e($cards_data[0]->Vendas); ?></h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
@@ -56,8 +54,8 @@
                             <i class="material-icons opacity-10">weekend</i>
                         </div>
                         <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize">Vendas</p>
-                            <h4 class="mb-0">R$103.430</h4>
+                            <p class="text-sm mb-0 text-capitalize">Valor Total de Vendas</p>
+                            <h4 class="mb-0">R$ <?php echo e($cards_data[0]->Valor_vendas); ?></h4>
                         </div>
                     </div>
                     <hr class="dark horizontal my-0">
@@ -75,7 +73,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6 class="mb-0 ">Solicitações de recarga&Visualização do Extrato</h6>
+                        <h6 class="mb-0 ">Solicitações de Recarga </h6>
                         <hr class="dark horizontal">
 
                     </div>
@@ -91,7 +89,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6 class="mb-0 "> Vendas Mensais </h6>
+                        <h6 class="mb-0 "> Solicitações de Recarga Aceitas </h6>
                         <hr class="dark horizontal">
 
                     </div>
@@ -107,7 +105,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h6 class="mb-0 ">Solicitações de Recargas mensais</h6>
+                        <h6 class="mb-0 ">Vendas Mensais</h6>
                         <hr class="dark horizontal">
 
                     </div>
@@ -201,9 +199,9 @@
     new Chart(ctx, {
         type: "bar",
         data: {
-            labels: ["M", "T", "W", "T", "F", "S", "S"],
+            labels: ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"],
             datasets: [{
-                label: "Sales",
+                label: "Solicitações",
                 tension: 0.4,
                 borderWidth: 0,
                 borderRadius: 4,
@@ -280,11 +278,11 @@
     var ctx2 = document.getElementById("chart-line").getContext("2d");
 
     new Chart(ctx2, {
-        type: "line",
+        type: "bar",
         data: {
-            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            labels: ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"],
             datasets: [{
-                label: "Mobile apps",
+                label: "Solicitações",
                 tension: 0,
                 borderWidth: 0,
                 pointRadius: 5,
@@ -365,9 +363,9 @@
     new Chart(ctx3, {
         type: "line",
         data: {
-            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dec"],
             datasets: [{
-                label: "Mobile apps",
+                label: "Vendas",
                 tension: 0,
                 borderWidth: 0,
                 pointRadius: 5,
