@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('title'); ?>
     Validar Crédito
 <?php $__env->stopSection(); ?>
@@ -66,11 +68,9 @@
 
                                         <tr><td>Nenhum registro encontrado.</td></tr>
                                     <?php endif; ?>
-
                                 </tbody>
                             </table>
                         <?php endif; ?>
-
                     </div>
                 </div>
             </div>
