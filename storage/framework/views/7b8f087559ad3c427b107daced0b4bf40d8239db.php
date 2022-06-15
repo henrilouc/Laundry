@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('content'); ?>
     <div class="container">
         <h2>Gerir Crédito</h2>

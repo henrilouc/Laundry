@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LaundryServiceController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\UserController;
@@ -18,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-
+Route::post('/registrando',  [\App\Http\Controllers\RegisterController::class, 'createUser'])->name('user.register');
+Route::get('/registrar',  [\App\Http\Controllers\RegisterController::class, 'index'])->name('show.register');
 Route::middleware('verifyProfile')->group(function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
