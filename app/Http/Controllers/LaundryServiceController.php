@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminStoreFormRequest;
 use App\Http\Requests\TransactionFormRequest;
 use App\Models\Credit;
 use App\Models\Price;
@@ -64,7 +65,7 @@ class LaundryServiceController extends Controller
     }
 
 
-    public function adminStore(Request $request)
+    public function adminStore(AdminStoreFormRequest $request)
     {
         if(isset($request->chkBuy)) {
             $user = User::create([
