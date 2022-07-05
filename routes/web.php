@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ClothController;
 use App\Http\Controllers\LaundryServiceController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\UserController;
@@ -51,29 +52,25 @@ Route::middleware('admin')->group(function () {
         Route::get('/solicitacoes', [UserController::class, 'search'])->name('user.search');
 
         Route::get('/pagamento', [LaundryServiceController::class, 'indexManage'])->name('manage');
-
         Route::post('/comprar',  [LaundryServiceController::class, 'adminStore'])->name('manageLaundryService.form');
-
         Route::post('/pagamento-avulso', [LaundryServiceController::class, 'storePayment'])->name('manage.form');
-
         Route::get('/compra', [LaundryServiceController::class, 'showPaymentManage'])->name('manage.store');
-
         Route::get('/pagamentos', [LaundryServiceController::class, 'showPayments'])->name('manage.search');
 
 
         Route::get('/extrato', [LaundryServiceController::class, 'indexExtract'])->name('extract');
-
         Route::get('/extratos', [LaundryServiceController::class, 'extract'])->name('extract.search');
 
         Route::get('/gerir-preco', [PriceController::class, 'index'])->name('managePrice');
-
         Route::get('/gerir-precos', [PriceController::class, 'show'])->name('managePrice.show');
         Route::get('/remover-preco/{id}', [PriceController::class, 'softDelete'])->name('managePrice.remove');
-
-
-
-
         Route::post('/add-preco', [PriceController::class, 'store'])->name('managePrice.form');
+
+        Route::get('/gerir-roupa', [ClothController::class, 'index'])->name('manageCloth');
+        Route::get('/gerir-roupas', [ClothController::class, 'show'])->name('manageCloth.show');
+        Route::get('/remover-preco/{id}', [ClothController::class, 'softDelete'])->name('manageCloth.remove');
+        Route::post('/add-roupa', [ClothController::class, 'store'])->name('manageCloth.form');
+
         Route::get('/dashboard', [LaundryServiceController::class, 'dashboard'])->name('dashboard');
 
         Route::get('/' , [LoginController::class, 'indexAdmin'])->name('admin');

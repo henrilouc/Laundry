@@ -9,10 +9,9 @@
 
     <title>Lavai</title>
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-
-
     <link href="<?php echo e(asset('dashboard/css/nucleo-icons.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('dashboard/css/nucleo-svg.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('dashboard/css/nucleo-icons.css')); ?>" rel="stylesheet">
@@ -64,6 +63,24 @@
                             <i class="material-icons opacity-10">people_outline</i>
                         </div>
                         <span class="nav-link-text ms-1">Validar Usuário</span>
+                    </a>
+                    <a class="nav-link text-white active bg-gradient-primary" href="<?php echo e(route('manage.store')); ?>">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">people_outline</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Comprar Crédito</span>
+                    </a>
+                    <a class="nav-link text-white active bg-gradient-primary" href="<?php echo e(route('extract')); ?>">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">people_outline</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Consultar Extrato</span>
+                    </a>
+                    <a class="nav-link text-white active bg-gradient-primary" href="<?php echo e(route('manageCloth')); ?>">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">people_outline</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Gerir Roupas</span>
                     </a>
                 </li>
             </ul>
