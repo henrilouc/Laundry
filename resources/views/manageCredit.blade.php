@@ -121,6 +121,32 @@
                                             <label class="text-success labelCompra_Importe" id="labelCompra_Importe"> </label>
                                         </span>
                                     </div>
+                                    <div id="row">
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <div class="input-group input-group-outline my-3 ">
+                                                    <label for="name" class=" form-label text-md-end">Tipo de Roupa</label>
+                                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" name="name"  required autocomplete="name" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="input-group input-group-outline my-3 ">
+                                                    <label for="amount" class=" form-label text-md-end">Quantidade</label>
+                                                    <input id="amount" type="text" class="form-control" value="{{ old('amount') }}" name="amount" required autocomplete="amount" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-danger my-3" id="DeleteRow" type="button">
+                                                    <i class="bi bi-trash"></i> Delete
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="newinput"></div>
+                                    <button id="rowAdder" type="button" class="btn btn-dark">
+                                        <span class="bi bi-plus-square-dotted"> </span> ADD
+                                    </button>
                                     <div class="row">
                                         <div class="form-group text-center">
                                             <button type="submit" class="btn btn-outline-primary">Comprar</button>
@@ -141,5 +167,39 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+
+        $('#rowAdder').click(function () {
+            let newRowAdd =
+                ' <div id=row'+
+                    ' <div class="row mb-3">'+
+                        '<div class="col-md-4">'+
+                            '<div class="input-group input-group-outline my-3 ">'+
+                                    '<label for="name" class=" form-label text-md-end">Tipo de Roupa</label>'+
+                                    '<input id="name" type="text" class="form-control  name=" name"  required autocomplete="name" >'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="col-md-4">'+
+                                '<div class="input-group input-group-outline my-3 ">'+
+                                    '<label for="amount" class=" form-label text-md-end">Quantidade</label>'+
+                                    '<input id="amount" type="text" class="form-control" name="amount" required autocomplete="amount" >'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="col-md-4">'+
+                                '<button class="btn btn-danger my-3" id="DeleteRow" type="button">'+
+                                    '<i class="bi bi-trash"></i> Delete'+
+                                '</button>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'
+
+            $('#newinput').append(newRowAdd);
+        });
+
+        $("body").on("click", "#DeleteRow", function () {
+            $(this).parents("#row").remove();
+        })
+    </script>
 @endsection
 
