@@ -13,7 +13,13 @@ class LaundryServiceClothes extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('laundry_service_clothes', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(\App\Models\LaundryService::class);
+            $table->foreignIdFor(\App\Models\Cloth::class);
+            $table->string('amount');
+            $table->timestamps();
+        });
     }
 
     /**

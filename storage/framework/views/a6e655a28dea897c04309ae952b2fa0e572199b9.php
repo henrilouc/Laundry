@@ -13,7 +13,7 @@
                             <div class="card-header text-white bg-secondary">
                                 <h4>Registrar Tipo de Roupa</h4>
                             </div>
-                            <div class="card-body cardStyle">
+                            <div class="card-body cardStyle ">
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="input-group input-group-outline my-3">
@@ -21,17 +21,11 @@
                                             <input type="text" name="name" id="name" class="form-control" required />
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
-                                        <div class="input-group input-group-outline my-3">
-                                            <label for="amount" class="form-label">Quantidade</label>
-                                            <input type="number" name="amount" id="amount" class="form-control" required />
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-4">
                                         <div class="input-group input-group-dynamic my-3">
-                                            <textarea type="text" name="description"  placeholder="Descrição" rows="4" class="form-control" required ></textarea>
+                                            <textarea type="text" name="description"  placeholder="Descrição" rows="4" class="form-control" ></textarea>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -61,7 +55,6 @@
                                             <thead>
                                             <tr>
                                                 <th class="text-center">Nome</th>
-                                                <th class="text-center" >Quantidade</th>
                                                 <th class="text-center">Descrição</th>
                                                 <th class="text-center"></th>
                                             </tr>
@@ -69,8 +62,7 @@
                                             <tbody>
                                             <?php $__currentLoopData = $clothes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cloth): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <tr>
-                                                    <td class="text-center"><?php echo e($cloth->name); ?> R$/KG</td>
-                                                    <td class="text-center"><?php echo e($cloth->amount); ?> KG</td>
+                                                    <td class="text-center"><?php echo e($cloth->name); ?></td>
                                                     <td class="text-center"><?php echo e($cloth->description); ?></td>
                                                     <td><button type="button" class="btn" onclick="window.location='<?php echo e(route('manageCloth.remove', $cloth->id)); ?>'"><span class="material-icons">delete</span></button></td>
                                                 </tr>

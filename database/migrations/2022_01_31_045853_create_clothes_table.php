@@ -13,7 +13,13 @@ class CreateClothesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('clothes');
+        Schema::create('clothes', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->timestamps();
+            $table->date('inactivated_at')->nullable()->default(Null);
+        });
     }
 
     /**
