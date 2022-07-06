@@ -65,8 +65,8 @@ class LaundryServiceController extends Controller
             'amount'=> $request->amount,
             'description'=> $request->description,
             'type' => 0,
-            'status' => 'P',
-            'paymentReceipt'=> $request->file('file')->store('comprovantes')
+                'status' => 'P',
+                'paymentReceipt'=> $request->file('file')->store('comprovantes')
         ]);
 
 
@@ -164,7 +164,7 @@ class LaundryServiceController extends Controller
 
         $multiplier = Price::where('user_type_id', Auth::user()->user_type_id);
 
-        return view('manageCredit',compact('users',$multiplier));
+        return view('manageCredit',compact('users','multiplier'));
     }
 
     public function showPayments(Request $request)

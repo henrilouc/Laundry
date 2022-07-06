@@ -22,6 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->string('description')->nullable();
             $table->string('status', 1);
             $table->boolean('type');
+            $table->boolean('single_purchase');
             $table->string('paymentReceipt');
             $table->timestamps();
         });

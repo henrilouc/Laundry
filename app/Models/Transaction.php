@@ -15,6 +15,7 @@ class Transaction extends Model
         'description',
         'status',
         'type',
+        'single_purchase',
         'paymentReceipt',
         'created_at',
         'updated_at'

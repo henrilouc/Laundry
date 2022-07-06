@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('title'); ?>
     Gerir Preço
 <?php $__env->stopSection(); ?>
@@ -96,7 +95,7 @@
                                                     <td class="text-center"><?php echo e($price->user_type_id); ?></td>
                                                     <td class="text-center"><?php echo e($price->description); ?></td>
 
-                                                    <td><button type="button" class="btn" onclick="window.location='<?php echo e(route('managePrice.remove', $price->id)); ?>'"><span class="material-icons">delete</span></button></td>
+                                                    <td><button type="button" class="btn" onclick="window.location='<?php echo e(route('managePrice.deletes', $price->id)); ?>'"><span class="material-icons">delete</span></button></td>
                                                 </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 

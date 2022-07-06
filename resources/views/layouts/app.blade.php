@@ -64,11 +64,17 @@
                         </div>
                         <span class="nav-link-text ms-1">Validar Usuário</span>
                     </a>
-                    <a class="nav-link text-white active bg-gradient-primary" href="{{route('manage.store')}}">
+{{--                    <a class="nav-link text-white active bg-gradient-primary" href="{{route('manage.store')}}">--}}
+{{--                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">--}}
+{{--                            <i class="material-icons opacity-10">people_outline</i>--}}
+{{--                        </div>--}}
+{{--                        <span class="nav-link-text ms-1">Comprar Crédito</span>--}}
+{{--                    </a>--}}
+                    <a class="nav-link text-white active bg-gradient-primary" href="{{route('manageSale')}}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">people_outline</i>
                         </div>
-                        <span class="nav-link-text ms-1">Comprar Crédito</span>
+                        <span class="nav-link-text ms-1">Gerir Venda</span>
                     </a>
                     <a class="nav-link text-white active bg-gradient-primary" href="{{route('extract')}}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">

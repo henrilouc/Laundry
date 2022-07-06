@@ -81,6 +81,6 @@ class PriceController extends Controller
     {
         Price::where('id',$id)->update(['inactivated_at' => Carbon::now()]);
         toastr()->success('', 'Preço deletado com sucesso.');
-        return Redirect::back();
+        return redirect()->route('managePrice.show');
     }
 }
