@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ClothController;
 use App\Http\Controllers\LaundryServiceController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,13 +58,16 @@ Route::middleware('admin')->group(function () {
         Route::get('/compra', [LaundryServiceController::class, 'showPaymentManage'])->name('manage.store');
         Route::get('/pagamentos', [LaundryServiceController::class, 'showPayments'])->name('manage.search');
 
+        Route::get('/gerir-venda', [SaleController::class, 'index'])->name('manageSale');
+        Route::get('/gerir-vendas', [SaleController::class, 'show'])->name('manageSale.show');
+        Route::post('/add-venda', [SaleController::class, 'store'])->name('manageSale.form');
 
         Route::get('/extrato', [LaundryServiceController::class, 'indexExtract'])->name('extract');
         Route::get('/extratos', [LaundryServiceController::class, 'extract'])->name('extract.search');
 
         Route::get('/gerir-preco', [PriceController::class, 'index'])->name('managePrice');
         Route::get('/gerir-precos', [PriceController::class, 'show'])->name('managePrice.show');
-        Route::get('/remover-preco/{id}', [PriceController::class, 'softDelete'])->name('managePrice.remove');
+        Route::get('/remover-precos/{id}', [PriceController::class, 'softDelete'])->name('managePrice.deletes');
         Route::post('/add-preco', [PriceController::class, 'store'])->name('managePrice.form');
 
         Route::get('/gerir-roupa', [ClothController::class, 'index'])->name('manageCloth');

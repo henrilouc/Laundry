@@ -96,7 +96,7 @@
                                                     <td class="text-center">{{ $price->user_type_id  }}</td>
                                                     <td class="text-center">{{ $price->description  }}</td>
 
-                                                    <td><button type="button" class="btn" onclick="window.location='{{route('managePrice.remove', $price->id)}}'"><span class="material-icons">delete</span></button></td>
+                                                    <td><button type="button" class="btn" onclick="window.location='{{route('managePrice.deletes', $price->id)}}'"><span class="material-icons">delete</span></button></td>
                                                 </tr>
                                             @endforeach
 
