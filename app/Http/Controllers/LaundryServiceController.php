@@ -29,17 +29,17 @@ class LaundryServiceController extends Controller
 
     public function dashboard(){
 
-        $cards_data = LaundryService::select(DB::raw('
-        CASE WHEN status = "P" THEN count(id) ELSE 0 END AS Pendentes,
-        CASE WHEN status = "A" THEN count(id) ELSE 0 END AS Aprovadas,
+        $cards_data = Transaction::select(DB::raw('
+        count(case when status = "P" then id end) Pendentes,
+        count(case when status = "A" then id end) Aprovadas,
         count(id) as Vendas,
-        sum(kilo) as Valor_vendas'))->groupBy('status')->get();
+         sum(amount) as Valor_vendas'))->groupBy('status')->get();
 
         return view('dashboard',compact('cards_data'));
     }
     public function indexExtract()
     {
-        Return view('extract');
+        Return redirect()->route('extract.show');
     }
 
     public function indexManage()
@@ -138,9 +138,10 @@ class LaundryServiceController extends Controller
     }
 
 
-    public function extract(Request $request)
+    public function extract()
     {
-        $transactions = Transaction::all()->get();
+        $transactions = Transaction::join('users', 'transactions.user_id', '=', 'users.id')->where('type', 1)->orderByDesc('id')
+            ->get(['users.name','users.email','users.phone','users.cpf', 'transactions.*']);
 
         return view('extract',compact('transactions'));
     }

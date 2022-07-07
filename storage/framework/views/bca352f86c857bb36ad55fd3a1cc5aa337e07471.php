@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     Validar Crédito
 <?php $__env->stopSection(); ?>
@@ -38,7 +36,7 @@
                                             <td class="text-center"><?php echo e($transaction->value); ?> R$</td>
                                             <td><?php echo e($transaction->description); ?></td>
                                             <td><?php echo e(date('d/m/Y H:i ',strtotime($transaction->updated_at))); ?> </td>
-                                            <?php if($transaction->paymentReceipt): ?>
+                                            <?php if($transaction->paymentReceipt > 0): ?>
                                                 <td class="text-center"><button type="button" class="btn"   data-bs-toggle="modal" data-bs-target="#fileModal<?php echo e($transaction->id); ?>"><span class="material-icons fa-lg">perm_media</span></button></td>
                                             <?php else: ?>
                                                 <td class="text-center"><button type="button" class="btn"   data-bs-toggle="modal" data-bs-target="#fileModal<?php echo e($transaction->id); ?>" disabled><span class="material-icons fa-lg">perm_media</span></button></td>

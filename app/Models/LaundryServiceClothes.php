@@ -9,7 +9,7 @@ class LaundryServiceClothes extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'laundry_service_id',
+        'transaction_id',
         'cloth_id',
         'amount',
         'created_at',

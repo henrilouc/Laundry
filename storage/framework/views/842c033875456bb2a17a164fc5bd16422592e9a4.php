@@ -70,15 +70,11 @@
                 <div class="card border-secondary ">
                     <div class="card-header text-white bg-secondary">
                         <h2>Consultar Extrato</h2>
-
-                        <form action="<?php echo e(route('laundryService.show')); ?>" method="GET">
-
-                        </form>
                     </div>
                     <div class="card-body cardStyle">
 
                         <?php if(isset($transactions)): ?>
-                            <table id= "dataTable" class="table table-hover">
+                            <table id= "dataTable" class="row-border" style="width:100%">
                                 <?php if(count(array($transactions)) > 0): ?>
                                     <thead>
                                     <tr>
