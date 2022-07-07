@@ -38,7 +38,7 @@
                                             <td class="text-center">{{ $transaction->value  }} R$</td>
                                             <td>{{ $transaction->description  }}</td>
                                             <td>{{date('d/m/Y H:i ',strtotime($transaction->updated_at))}} </td>
-                                            @if($transaction->paymentReceipt)
+                                            @if($transaction->paymentReceipt > 0)
                                                 <td class="text-center"><button type="button" class="btn"   data-bs-toggle="modal" data-bs-target="#fileModal{{$transaction->id}}"><span class="material-icons fa-lg">perm_media</span></button></td>
                                             @else
                                                 <td class="text-center"><button type="button" class="btn"   data-bs-toggle="modal" data-bs-target="#fileModal{{$transaction->id}}" disabled><span class="material-icons fa-lg">perm_media</span></button></td>

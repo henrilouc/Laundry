@@ -15,7 +15,7 @@ class LaundryServiceClothes extends Migration
     {
         Schema::create('laundry_service_clothes', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\LaundryService::class);
+            $table->foreignIdFor(\App\Models\Transaction::class);
             $table->foreignIdFor(\App\Models\Cloth::class);
             $table->string('amount');
             $table->timestamps();
@@ -29,6 +29,6 @@ class LaundryServiceClothes extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('laundry_service_clothes');
     }
 }

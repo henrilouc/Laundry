@@ -35,7 +35,7 @@ class SaleController extends Controller
             'status' => 'A',
             'type' => 1,
             'single_purchase' => $single_purchase,
-            'paymentReceipt' => $request->file,
+            'paymentReceipt' => $request->file('file')->store('comprovantes')
         ]);
         if($request->cloth){
             LaundryServiceClothes::create([

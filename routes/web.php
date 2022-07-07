@@ -63,7 +63,7 @@ Route::middleware('admin')->group(function () {
         Route::post('/add-venda', [SaleController::class, 'store'])->name('manageSale.form');
 
         Route::get('/extrato', [LaundryServiceController::class, 'indexExtract'])->name('extract');
-        Route::get('/extratos', [LaundryServiceController::class, 'extract'])->name('extract.search');
+        Route::get('/extratos', [LaundryServiceController::class, 'extract'])->name('extract.show');
 
         Route::get('/gerir-preco', [PriceController::class, 'index'])->name('managePrice');
         Route::get('/gerir-precos', [PriceController::class, 'show'])->name('managePrice.show');
