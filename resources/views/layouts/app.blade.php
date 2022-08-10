@@ -9,10 +9,9 @@
 
     <title>Lavai</title>
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-
-
     <link href="{{ asset('dashboard/css/nucleo-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('dashboard/css/nucleo-svg.css') }}" rel="stylesheet">
     <link href="{{ asset('dashboard/css/nucleo-icons.css') }}" rel="stylesheet">
@@ -65,6 +64,30 @@
                         </div>
                         <span class="nav-link-text ms-1">Validar Usuário</span>
                     </a>
+{{--                    <a class="nav-link text-white active bg-gradient-primary" href="{{route('manage.store')}}">--}}
+{{--                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">--}}
+{{--                            <i class="material-icons opacity-10">people_outline</i>--}}
+{{--                        </div>--}}
+{{--                        <span class="nav-link-text ms-1">Comprar Crédito</span>--}}
+{{--                    </a>--}}
+                    <a class="nav-link text-white active bg-gradient-primary" href="{{route('manageSale')}}">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">people_outline</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Gerir Venda</span>
+                    </a>
+                    <a class="nav-link text-white active bg-gradient-primary" href="{{route('extract')}}">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">people_outline</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Consultar Extrato</span>
+                    </a>
+                    <a class="nav-link text-white active bg-gradient-primary" href="{{route('manageCloth')}}">
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">people_outline</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Gerir Roupas</span>
+                    </a>
                 </li>
             </ul>
 
@@ -75,12 +98,6 @@
             <nav class="navbar navbar-main navbar-expand-lg  px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
                 <div class="container-fluid py-1 px-3">
                     <nav aria-label="breadcrumb">
-                        <!--
-                        <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-                            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
-                        </ol>
-                        -->
                         <h6 class="font-weight-bolder mb-0">@yield('title')</h6>
                     </nav>
                     <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ml-4">
@@ -176,7 +193,7 @@
 
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Cadastre-se') }}</a>
+                                        <a class="nav-link" href="{{ route('show.register') }}">{{ __('Cadastre-se') }}</a>
                                     </li>
                                 @endif
                             @else

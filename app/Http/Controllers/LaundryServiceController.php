@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminStoreFormRequest;
+use App\Http\Requests\TransactionFormRequest;
 use App\Models\Credit;
 use App\Models\Price;
-use App\Models\Sale;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\UserType;
 use App\Notifications\NewUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
@@ -24,11 +26,18 @@ class LaundryServiceController extends Controller
 
 
     public function dashboard(){
-        return view('dashboard');
+
+        $cards_data = Transaction::select(DB::raw('
+        count(case when status = "P" then id end) Pendentes,
+        count(case when status = "A" then id end) Aprovadas,
+        count(id) as Vendas,
+         sum(amount) as Valor_vendas'))->groupBy('status')->get();
+
+        return view('dashboard',compact('cards_data'));
     }
     public function indexExtract()
     {
-        Return view('extract');
+        Return redirect()->route('extract.show');
     }
 
     public function indexManage()
@@ -45,7 +54,7 @@ class LaundryServiceController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(TransactionFormRequest $request)
     {
 
         Transaction::create([
@@ -54,16 +63,16 @@ class LaundryServiceController extends Controller
             'amount'=> $request->amount,
             'description'=> $request->description,
             'type' => 0,
-            'status' => 'P',
-            'paymentReceipt'=> $request->file
+                'status' => 'P',
+                'paymentReceipt'=> $request->file('file')->store('comprovantes')
         ]);
 
 
-        return redirect()->route('laundryService');
+        return redirect()->route('home');
     }
 
 
-    public function adminStore(Request $request)
+    public function adminStore(AdminStoreFormRequest $request)
     {
         if(isset($request->chkBuy)) {
             $user = User::create([
@@ -127,9 +136,10 @@ class LaundryServiceController extends Controller
     }
 
 
-    public function extract(Request $request)
+    public function extract()
     {
-        $transactions = Transaction::all()->get();
+        $transactions = Transaction::join('users', 'transactions.user_id', '=', 'users.id')->where('type', 1)->orderByDesc('id')
+            ->get(['users.name','users.email','users.phone','users.cpf', 'transactions.*']);
 
         return view('extract',compact('transactions'));
     }
@@ -153,7 +163,7 @@ class LaundryServiceController extends Controller
 
         $multiplier = Price::where('user_type_id', Auth::user()->user_type_id);
 
-        return view('manageCredit',compact('users',$multiplier));
+        return view('manageCredit',compact('users','multiplier'));
     }
 
     public function showPayments(Request $request)

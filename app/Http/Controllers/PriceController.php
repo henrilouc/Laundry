@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Price;
 use App\Models\UserType;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PriceController extends Controller
 {
@@ -46,8 +48,9 @@ class PriceController extends Controller
     public function show()
     {
         $userTypes = UserType::all();
+        $prices = Price::where('inactivated_at',null)->get();
 
-        Return view('managePrice', compact('userTypes'));
+        Return view('managePrice', compact('userTypes','prices'));
     }
 
     /**
@@ -73,14 +76,11 @@ class PriceController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function softDelete($id)
     {
-        //
+        Price::where('id',$id)->update(['inactivated_at' => Carbon::now()]);
+        toastr()->success('', 'Preço deletado com sucesso.');
+        return redirect()->route('managePrice.show');
     }
 }
