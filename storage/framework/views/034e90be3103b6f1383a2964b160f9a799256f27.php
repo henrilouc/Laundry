@@ -25,7 +25,9 @@
                                         <th class="text-center" >Email</th>
                                         <th class="text-center" >Telefone</th>
                                         <th class="text-center" >Data Pagamento</th>
+                                        <th></th>
                                         <th class="text-center" >Ações</th>
+                                        <th></th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -43,15 +45,16 @@
                                             <td class="text-center"><?php echo e($transaction->phone); ?></td>
                                             <td><?php echo e(date('d/m/Y H:i ',strtotime($transaction->created_at))); ?> </td>
                                             <?php if($transaction->paymentReceipt > 0): ?>
-                                                <td class="text-center"><button type="button" class="btn"   data-bs-toggle="modal" data-bs-target="#fileModal<?php echo e($transaction->id); ?>"><span class="material-icons fa-lg">perm_media</span></button></td>
+                                                <td class="text-center"><button type="button" class="btn"   data-bs-toggle="modal" data-bs-target="#fileModal<?php echo e($transaction->id); ?>"><span class="material-icons fa-lg">receipt_long</span></button></td>
                                             <?php else: ?>
-                                                <td class="text-center"><button type="button" class="btn"   data-bs-toggle="modal" data-bs-target="#fileModal<?php echo e($transaction->id); ?>" disabled><span class="material-icons fa-lg">perm_media</span></button></td>
+                                                <td class="text-center"><button type="button" class="btn"   data-bs-toggle="modal" data-bs-target="#fileModal<?php echo e($transaction->id); ?>" disabled><span class="material-icons fa-lg">receipt_long</span></button></td>
                                             <?php endif; ?>
                                             <?php if($transaction->paymentReceipt > 0): ?>
-                                                <td class="text-center"><button type="button" class="btn"   data-bs-toggle="modal" data-bs-target="#ClothesModal<?php echo e($transaction->id); ?>"><span class="material-icons fa-lg">perm_media</span></button></td>
+                                                <td class="text-center"><button type="button" class="btn"   data-bs-toggle="modal" data-bs-target="#ClothesModal<?php echo e($transaction->id); ?>"><span class="material-icons fa-lg">checkroom</span></button></td>
                                             <?php else: ?>
-                                                <td class="text-center"><button type="button" class="btn"   data-bs-toggle="modal" data-bs-target="#ClothesModal<?php echo e($transaction->id); ?>" disabled><span class="material-icons fa-lg">perm_media</span></button></td>
+                                                <td class="text-center"><button type="button" class="btn"   data-bs-toggle="modal" data-bs-target="#ClothesModal<?php echo e($transaction->id); ?>" disabled><span class="material-icons fa-lg">checkroom</span></button></td>
                                             <?php endif; ?>
+                                            <td class="text-center"><button type="button" class="btn" onclick="window.location='<?php echo e(route('admin.report', ['id' => $transaction->id,'download' =>'pdf'])); ?>'"><span class="material-icons fa-lg">file_download</span></button></td>
                                         </tr>
                                         <div class="modal fade" id="ClothesModal<?php echo e($transaction->id); ?>" tabindex="-1" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -61,10 +64,10 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                         <ul>
-                                                            <li>Camisa Branca</li>
-                                                            <li>Camisa Verde</li>
-                                                            <li>Camisa Azul</li>
-                                                            <li>Camisa Amarela</li>
+                                                            <li>Camisa Branca 10kg</li>
+                                                            <li>Camisa Verde 1kg</li>
+                                                            <li>Camisa Azul 1kg</li>
+                                                            <li>Camisa Amarela 1kg</li>
                                                         </ul>
 
                                                     <div class="modal-footer">

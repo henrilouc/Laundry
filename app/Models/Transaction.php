@@ -18,6 +18,8 @@ class Transaction extends Model
         'single_purchase',
         'paymentReceipt',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'code',
+        'discount'
     ];
 }
