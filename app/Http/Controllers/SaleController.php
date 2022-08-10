@@ -39,8 +39,8 @@ class SaleController extends Controller
         ]);
         if($request->cloth){
             LaundryServiceClothes::create([
-                'laundry_service_id' => $transaction->id,
-                'cloth_id'           => $request->cloth_id,
+                'transaction_id' => $transaction->id,
+                'cloth_id'           => 1,
                 'amount'             => $request->amount,
                 'created_at'         => $request->created_at,
                 'updated_at'         => $request->updated_at

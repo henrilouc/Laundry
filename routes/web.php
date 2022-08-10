@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ClothController;
 use App\Http\Controllers\LaundryServiceController;
 use App\Http\Controllers\PriceController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -85,6 +86,8 @@ Route::middleware('admin')->group(function () {
 
     Route::get('/rejeitar/{id}' , [UserController::class, 'rejectRequest'])->name('admin.reject');
     Route::get('/rejeitar-pagamento/{id}' , [LaundryServiceController::class, 'rejectPayin'])->name('admin.payinReject');
+
+    Route::get('/relatorio' , [ReportController::class, 'generatePDF'])->name('admin.report');
 });
 
 
